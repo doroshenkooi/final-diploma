@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  <script src="/src/index.js"></script>
+</head>
+
+<body>
+        
+  <header class="header">
+    <div class="header-logo">
+      <div class="logo-go-cinema"><img src="image\image_svg\go-cinema.svg" alt="название идем в кино">
+      </div>
+      <div class="logo-admin"><span>администраторская</span>
+      </div>
+    </div>
+
+  </header>
+  <main>
+    <section class="managament-hall">
+      <div class="connecting-blocks">
+        <div class="wrapper-title">
+          <div class="title-text">
+            <div class="title_text-text">
+              <h2>управление залами</h2>
+            </div>
+            <div class="title-arrow">
+                    <img src="image/image.png/down_arrow.png" alt="стрелка вниз">
+            </div>
+          </div>
+        </div>
+        <div class="wrapper-hall">
+          <div class="choosing-room-available">
+            <h5>Доступные залы:</h5>
+          </div>
+          <nav class="choosing-list-managament">
+            <div class="choosing-hall-one">
+              <div class="dash-one"><span>-</span>
+              </div>
+              <div class="choosing-hall-text"><span>зал1</span>
+              </div>
+
+              <button class="basket-button-one">
+                <img src="image\image.png\popcorn.png" alt="popcorn basket button">
+              </button>
+
+            </div>
+            <div class="choosing-hall-two">
+              <div class="dash-two"><span>-</span>
+              </div>
+              <div class="choosing-hall-text"><span>зал2</span>
+              </div>
+
+              <button class="basket-button-two">
+                <img class="basket-button-two" src="image\image.png\popcorn.png" alt="popcorn basket button">
+              </button>
+
+            </div>
+        </div>
+        </nav>
+        <div class="create-hall"><button class="create-hall-button" onclick="addNextHall()">
+            <span class="create-hall-text">создать зал</span></button>
+        </div>
+      </div>
+    </section>
+    <!--Котфигурация зала-->
+    <section class="configuration-halls">
+      <div class="wrapper-title">
+        <div class="title-text">
+          <div class="title_text-text">
+            <h2>конфигурация зала</h2>
+          </div>
+          <div class="title-arrow">
+                <img src="image/image.png/down_arrow.png" alt="стрелка вниз">
+          </div>
+        </div>
+      </div>
+      <div class="configuration-hall">
+        <div class="choise-hall-configure">
+          <div class="conf-paragraph">
+            <h5>Выберите зал для конфигурации:</h5>
+          </div>
+
+          <nav class="choice-list">
+            <button class="choice-one-hall" type="button">
+              <span class="hall-button-text">зал 1</span></button>
+            <button class="choice-two-hall" type="button">
+              <span class="hall-button-text">зал 2</span></button>
+          </nav>
+        </div>
+        <div class="choosing-row-chairs">
+          <div class="choosing-places">
+            <h5>Укажите количество рядов и максимальное количество кресел в ряду:</h5>
+          </div>
+          <div class="point-chairs">
+            <div class="point-label-input">
+              <div class="point-label"><label>Рядов,шт</div>
+              <div class="point-input"><input type="text">
+              </div>
+              </label>
+            </div>
+            <div class="x-sign">x</div>
+            <div class="point-label-input">
+              <div class="point-label"><label>Мест,шт</div>
+              <div class="point-input"><input type="text">
+              </div>
+              </label>
+            </div>
+          </div>
+
+          <!--frame-->
+          <div class="frame-chairs">
+            <div class="frame-conf-paragraph">
+              <h5>Теперь вы можете указать типы кресел на схеме зала:</h5>
+            </div>
+
+            <div class="frame-all-chairs">
+              <div class="frame_chairs">
+                <div class="regular-chairs">
+                </div>
+                <div><span class="chairs-text"> — обычные кресла </span>
+                </div>
+              </div>
+              <div class="frame_chairs">
+                <div class="vip-chairs">
+                </div><span class="chairs-text"> — VIP кресла </span>
+              </div>
+              <div class="frame_chairs">
+                <div class="blocked-chairs">
+                </div>
+                <span class="chairs-text"> — заблокированные (нет кресла)</span>
+              </div>
+            </div>
+              <div class="frame_hint"><span class="frame_hint_text">Чтобы изменить вид кресла, нажмите по нему левой кнопкой мыши</span>
+                </div>
+            
+            <div class="frame_hall">
+              <div class="screen-text">экран
+              </div>
+              <div class="frame_hall-wrapper">
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="vip-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+                <div class="conf-step__row">
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="regular-chairs">
+                  </div></div>
+                  <div class="conf-step__chair"><div class="blocked-chairs">
+                  </div></div>
+              </div>
+              <div class="conf-step__row">
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+                <div class="conf-step__chair"><div class="regular-chairs">
+                </div></div>
+            </div>
+            <div class="conf-step__row">
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              <div class="conf-step__chair"><div class="regular-chairs">
+              </div></div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+       <div class="seat-selection">
+        <button type="button" class="seat-selection-button"><span class="selection-button-text">отменить</span></button>
+        <button type="input" class="seat-selection-input"><div class="selection-input-text">сохранить</div></button>
+      </div>
+    </div>
+     
+    </section>
+
+  </main>
+  <footer></footer>
+  
+        <script src="./index.js"></script>
+  
+</body>
+
+</html>
