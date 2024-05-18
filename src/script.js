@@ -1,33 +1,30 @@
-const basketBtnOne = document.querySelector('.basket-button-one');
-basketBtnOne.addEventListener('click', function() {
-  // Действия при нажатии на кнопку
-  console.log('Кнопка "зал 1" нажата');
-});
-
-
-
-
-// Получаем все необходимые элементы
 const choosingHallOne = document.querySelector('.choosing-hall-one');
 const choosingHallTwo = document.querySelector('.choosing-hall-two');
 const choiceOneHall = document.querySelector('.choice-one-hall');
 const choiceTwoHall = document.querySelector('.choice-two-hall');
-const createHallButton = document.querySelector('.create-hall-button');
+const createHallBtn = document.querySelector('.create-hall-button');
+const priceOneHall = document.querySelector('.price-one-hall');
+const priceTwoHall = document.querySelector('.price-two-hall');
 const basketButtonOne = document.querySelectorAll('.basket-button-one');
 const basketButtonTwo = document.querySelectorAll('.basket-button-two');
-
+const salesOneHall = document.querySelector('.open-sales-one-hall');
+const salesTwoHall = document.querySelector('.open-sales-two-hall');
 
   // При нажатии кнопки, меняем состояние элементов
   let clickCount = 0;
 
-  createHallButton.addEventListener('click', function() {
+  createHallBtn.addEventListener('click', function() {
     if (clickCount === 0) {
       choosingHallOne.style.display = 'flex';
       choiceOneHall.style.display = 'flex';
+      priceOneHall.style.display = 'flex';
+      salesOneHall.style.display = 'flex';
     } else if (clickCount === 1) {
       choosingHallTwo.style.display = 'flex';
       choiceTwoHall.style.display = 'flex';
-      createHallButton.disabled = true; // Отключаем кнопку после третьего нажатия
+      priceTwoHall.style.display = 'flex';
+      salesTwoHall.style.display = 'flex';
+      createHallBtn.disabled = true; // Отключаем кнопку после третьего нажатия
     }
   
     clickCount++;
@@ -38,6 +35,7 @@ basketButtonOne.forEach(function(buttonOne) {
     // При нажатии кнопки, меняем состояние элементов
     choosingHallOne.style.display = 'none';
     choiceOneHall.style.display = 'none';
+    priceOneHall.style.display = 'none';
   });
 });
 
@@ -46,9 +44,10 @@ basketButtonTwo.forEach(function(buttonTwo) {
     // При нажатии кнопки, меняем состояние элементов
     choosingHallTwo.style.display = 'none';
     choiceTwoHall.style.display = 'none';
+    priceTwoHall.style.display = 'none';
   });
 });
-
+  });
 function showNextElement() {
   
   // Показываем текущий элемент
@@ -57,5 +56,5 @@ function showNextElement() {
       currentElementIndex++;
   }
 }
-})
+ 
 

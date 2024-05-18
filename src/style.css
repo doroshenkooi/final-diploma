@@ -102,7 +102,7 @@ main {
     width: 2px;
     height: 310px;
 
-    left: 60px;
+    left: 61px;
     top: 66px;
     bottom: 0px;
 
@@ -110,6 +110,46 @@ main {
     z-index: 1;
 }
 
+.configuration-hall-line::before {
+    content: " ";
+    position: absolute;
+    width: 2px;
+    height: 1050px;
+
+    left: 61px;
+    top: 66px;
+    bottom: 0px;
+
+    background: #BC95D6;
+    z-index: 1;
+}
+
+.prices-configuration-line::before {
+    content: " ";
+position: absolute;
+width: 2px;
+left: 61px;
+top: 10px;
+bottom: 0px;
+background: #BC95D6;
+z-index: 1;
+
+}
+
+.session-grid-line::before {
+    content: " ";
+ /* ::before */
+
+position: absolute;
+width: 2px;
+left: 61px;
+top: 0px;
+bottom: 0px;
+
+background: #BC95D6;
+
+    z-index: 1;
+}
 
 .wrapper-title::before {
     content: "";
@@ -153,7 +193,7 @@ main {
 h2 {
     min-width: 242px;
     height: auto;
-    font-family: 'Arial';
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
@@ -189,12 +229,13 @@ h2 {
 
 h5 {
     /* Доступные залы: */
-    font-family: 'Arial';
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 18px;
     color: #000000;
+    margin: 0;
 }
 
 .choosing-list-managament {
@@ -233,7 +274,7 @@ h5 {
     width: 45px;
     max-width: 801px;
     height: 18px;
-    font-family: 'Roboto';
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -248,7 +289,7 @@ h5 {
 .dash-one {
     /* – */
 
-    font-family: 'Roboto';
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -263,7 +304,7 @@ h5 {
 .dash-two {
     /* – */
 
-    font-family: 'Roboto';
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -353,7 +394,18 @@ h5 {
 
 }
 
-/*++++++++++++++ Конфигурация зала+++++++++++*/
+/*++++++++++++++ Конфигурация зала +++++++++++*/
+.configuration-halls {
+    display: flex;
+    flex-direction: column;
+    height: 215px;
+    background: #EAE9EBF2;
+    width: 962px;
+    min-height: 905px;
+    position: relative;
+    margin-bottom: 150px;
+}
+
 
 .configuration-hall {
     display: flex;
@@ -365,7 +417,8 @@ h5 {
     position: relative;
 }
 
-.choise-hall-configure {
+.choise-hall-configure, 
+.price-configur {
 
     display: flex;
     flex-direction: column;
@@ -380,7 +433,8 @@ h5 {
     top: 35px;
 }
 
-.choice-list {
+.choice-list,
+.price-list {
 
     display: flex;
     width: 962px;
@@ -389,7 +443,12 @@ h5 {
     z-index: 2;
 }
 
-.choice-one-hall {
+.choice-one-hall,
+.choice-two-hall,
+.price-one-hall,
+.price-two-hall,
+.open-sales-one-hall,
+.open-sales-two-hall {
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -418,7 +477,7 @@ h5 {
 
 }
 
-.choice-two-hall {
+.choice-two-hall::before {
 
     display: none;
     flex-direction: column;
@@ -436,7 +495,8 @@ h5 {
 }
 
 
-.choosing-row-chairs {
+.choosing-row-chairs,
+.prices-seats {
 
     display: flex;
     flex-direction: column;
@@ -452,7 +512,6 @@ h5 {
 
 .point-chairs {
     display: flex;
-    flex-direction: row;
     width: 538px;
     height: 51px;
 }
@@ -471,9 +530,9 @@ h5 {
 
 label {
 
-    width: 56px;
+    width: auto;
     height: 14px;
-    font-family: 'Roboto';
+    font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -581,7 +640,7 @@ label {
     line-height: 16px;
     color: #848484;
     margin-left: 4px;
-
+    margin-right: 1.6px;
 }
 
 .regular-chairs {
@@ -592,7 +651,6 @@ label {
     background: #C4C4C4;
     border: 1px solid #393939;
     border-radius: 4px;
-
 }
 
 .vip-chairs {
@@ -679,15 +737,12 @@ color: #000000;
 }
 
 .frame_hall-wrapper {
-/* conf-step__hall-wrapper */
 
-/* Auto layout */
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px;
 gap: 10px;
-
 width: 278px;
 height: 350px;
 
@@ -719,7 +774,9 @@ background: #EAE9EBF2;
 
 }
 
-.seat-selection-button {
+.seat-selection-button,
+.price-selection-button,
+.movie-selection-button {
  
 display: flex;
 flex-direction: row;
@@ -731,6 +788,7 @@ padding: 11.2px 32px 11.9px 18px;
 background: #FFFFFF;
 box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
 border-radius: 3px;
+border: none;
 }
 
 .selection-button-text {
@@ -758,10 +816,11 @@ flex-grow: 0;
 
 }
 
-.seat-selection-input {
+.seat-selection-input,
+.price-selection-input,
+.movie-selection-input {
     /* Input */
 
-/* Auto layout */
 display: flex;
 justify-content: center;
 align-items: flex-start;
@@ -773,7 +832,7 @@ height: 40px;
 background: #16A6AF;
 box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
 border-radius: 3px;
-
+border: none;
 
 }
 .selection-input-text {
@@ -791,8 +850,576 @@ display: flex;
 align-items: center;
 text-align: center;
 text-transform: uppercase;
+color: #FFFFFF;
+}
+
+/*-***********Конфигурация-----цен-****************-*/
+.prices-configuration {
+    display: flex;
+    position: relative;
+}
+.price-configuration {
+    display: flex;
+    flex-direction: column;
+    background: #EAE9EBF2;
+    width: 962px;
+    min-height: 391px;
+    height: auto;
+    position: relative;
+    
+}
+
+.conf-prices {
+    /* conf-step__paragraph */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 251px;
+height: 18px;
+left: calc(50% - 251px/2 - 256.5px);
+top: 35px;
+
+
+}
+.price-list {
+/* List */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+
+position: absolute;
+width: 171px;
+height: 42px;
+left: calc(50% - 171px/2 - 296.5px);
+top: 65px;
+
+}
+
+.price-place {
+    /* conf-step__paragraph */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 555px 0px 0px;
+
+position: absolute;
+width: 816px;
+height: 18px;
+left: 104px;
+right: 42px;
+top: 143px;
+
+}
+
+.cost-type-seats,
+.cost-type-seats-vip {
+
+    display: flex;
+    width: 816px;
+    height: 70px;
+    opacity: 0px;
+    gap: 1.6px;
+    align-items: center;
+position: absolute;
+height: 51px;
+left: 104px;
+right: 42px;
+top: 173px;
+
+
+}
+.cost-type-seats-vip {
+
+top: 236px;
+
+}
+
+.price-label-input {
+ 
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 1.6px;
+
+
+}
+
+.price-regular-chairs {
+    display: flex;
+    width: auto;
+    margin-top: 13px;
+    align-items: center;
+    gap: 1.6px;
+}
+
+[type="text-text"] {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 8.8px 9px 8.8px;
+
+    width: 74px;
+    height: 36px;
+
+    background: #FFFFFF;
+    border: 1px solid #B7B7B7;
+}
+
+.price-seat-selection {
+/* Fieldset */
+display: flex;
+justify-content: center;
+align-items: flex-start;
+gap: 15px;
+padding: 17px 0px 0px;
+position: absolute;
+height: 57px;
+left: 104px;
+right: 42px;
+top: 299px;
+
+}
+
+
+
+/*=========== Сетка сеансов ==============*/
+.session-grid {
+    display: flex;
+    position: relative;
+}
+.session-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+   
+    background: #EAE9EBF2;
+    width: 962px;
+    min-height: 591px;
+    height: auto;
+    position: relative;
+    
+}
+
+.add-movie {
+  /* conf-step__paragraph */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 17px 632px 0px 0px;
+
+position: absolute;
+height: 57px;
+left: 104px;
+right: 42px;
+top: 35px;
+
+}
+
+.add-movie-btn {
+  /* Button */
+
+/* Auto layout */
+display: flex;
+align-items: flex-start;
+padding: 11.2px 32px 11.9px;
+
+width: 194px;
+height: 40px;
+
+background: #16A6AF;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+border-radius: 3px;
+  border: none;
+}
+
+.add-movie-text {
+  /* Добавить фильм */
+
+width: 130px;
+height: 16px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+/* identical to box height, or 114% */
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: uppercase;
 
 color: #FFFFFF;
+}
 
+.movie-list {
+    /* Frame 19 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+align-items: flex-start;
+align-content: flex-start;
+padding: 0px;
+gap: 15px;
+
+position: absolute;
+width: 960px;
+height: 117px;
+left: 104px;
+top: 104px;
+
+
+
+}
+
+.movie-one,
+.movie-two,
+.movie-three,
+.movie-four,
+.movie-five {
+/* Frame 15 */
+
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+isolation: isolate;
+width: 259px;
+height: 52px;
+border: 1px solid rgba(0, 0, 0, 0.3);
+position: relative;
+}
+
+.movie-one {
+    background: #CAFF85;
+}
+
+.movie-two {
+    background: #85FF89;
+}
+
+.movie-three {
+background: #85FFD3;
+}
+
+.movie-four {
+    background: #85E2FF;
+}
+
+.movie-five {
+background: #8599FF;
+;
+}
+
+.movie-post {
+
+    width: 38px;
+    height: 50px;
+    background: url(https://i.postimg.cc/d13N4Rwd/mov-post.png);
+    background-size: cover;
+} 
+
+.movie-conteiner-text {
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: self-start;
+padding: 0px 10px;
+gap: 2px;
+
+width: 221px;
+height: 52px;
+
+}
+
+.movie-text-top {
+
+width: 201px;
+height: 32px;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+color: #000000;
+}
+
+.movie-text-button {
+width: 68px;
+height: 16px;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+color: rgba(0, 0, 0, 0.7);
+
+}
+
+.movie-conteiner-btn {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+margin: 0px;
+position: absolute;
+width: 20px;
+height: 20px;
+left: 237px;
+top: 29.7px;
+background: #FFFFFF;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+border-radius: 3px;
+z-index: 2;
+
+}
+
+.movie-btn-one {
+ width: 20px;
+height: 20px;
+background-image: url(https://i.postimg.cc/G3P9z5xn/popcorn.png);
+background-size: cover;
+margin: 0px;
+border: none;
+
+}
+
+.movie-hall-add {
+    /* conf-step__seances */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 35px;
+gap: 35px;
+
+position: absolute;
+height: 192px;
+left: 0px;
+right: 42px;
+top: 172px;
+
+}
+
+.movie-hall-add-one {
+/* conf-step__seances-hall */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 746px;
+height: 78px;
+
+
+
+}
+
+.movie-hall-title {
+ /* Heading 3 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 711px 0px 0px;
+
+width: 746px;
+height: 18px;
+}
+
+.movie-hall-title-text {
+    /* Зал 1 */
+
+width: 45px;
+max-width: 756px;
+height: 18px;
+max-height: 18.4px;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 18px;
+display: flex;
+align-items: center;
+text-transform: uppercase;
+color: #000000;
+
+}
+
+.movie-hall-time-frame {
+    /* conf-step__seances-timeline */
+
+width: 720px;
+height: 60px;
+border: 1px solid #848484;
+flex: none;
+order: 1;
+flex-grow: 0;
+
+}
+
+.movie-hall-selection {
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 17px 271.99px 0px 272.38px;
+gap: 14.48px;
+
+position: absolute;
+height: 57px;
+left: 104px;
+right: 42px;
+top: 499px;
+
+}
+
+/*================ОТКРЫТЬ ПРОДАЖИ============*/
+
+.open-sales {
+    /* Section */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+isolation: isolate;
+
+width: 962px;
+height: 371px;
+
+background: rgba(234, 233, 235, 0.95);
+
+}
+
+.open-sales-hall {
+    /* conf-step__wrapper */
+
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 35px 42px 35px 30px;
+gap: 29px;
+
+width: 967px;
+height: 237px;
+
+}
+
+.open-sales-сhoose-hall {
+    /* conf-step__paragraph */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 821px;
+height: 18px;
+
+
+}
+
+.open-sales-list {
+/* List */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+
+width: 821px;
+height: 42px;
+}
+
+.everything-ready {
+
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px 313.328px 0px 313.672px;
+
+width: 821px;
+height: 18px;
+
+}
+
+.everything-ready-text {
+/* Всё готово к открытию */
+
+width: 199px;
+max-width: 826px;
+height: 18px;
+max-height: 18.4px;
+
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+display: flex;
+align-items: center;
+text-align: center;
+color: #000000;
+}
+
+.open-sales-button {
+/* Button */
+
+/* Auto layout */
+display: flex;
+
+justify-content: center;
+align-items: center;
+padding: 11.2px, 20px, 11.9px, 20px;
+
+width: 270px;
+height: 40px;
+
+background: #16A6AF;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+border-radius: 3px;
+border: none;
+
+
+
+}
+
+.open-sales-text {
+    /* Открыть продажу билетов */
+
+width: 215px;
+height: 16px;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: uppercase;
+color: #FFFFFF;
 
 }
