@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     flex-direction: column;
@@ -9,8 +10,178 @@ body {
     background-size: cover;
     font-family: Arial, sans-serif;
 }
+/**************АВТОРИЗАЦИЯ***********/
+.authorization {
+    /* Section */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px 0px 35px;
+gap: 35px;
+isolation: isolate;
+width: 480px;
+height: 294px;
+background: rgba(234, 233, 235, 0.95);
+
+}
+
+.authorization-title {
+    /* Header */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 16px 0px;
+width: 480px;
+height: 57px;
+background: #63536C;
+
+}
+
+h1 {
+    /* Авторизация */
+
+width: 161px;
+max-width: 272px;
+height: 25px;
+max-height: 25.3px;
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 25px;
+display: flex;
+align-items: center;
+text-transform: uppercase;
+color: #FFFFFF;
+
+}
+
+.authorization-form {
+    /* Form */
+display: flex;
+width: 480px;
+height: 167px;
+position: relative;
+}
+
+.form-mail {
+    /* Label */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 1.6px;
+
+position: absolute;
+width: 272px;
+height: 52px;
+left: calc(50% - 272px/2);
+top: -1px;
+
+}
+
+.authorization-input-email {
+    /* Input */
+
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 8px 8.8px 9px;
+height: 36px;
+width: 272px;
+background: #FFFFFF;
+border: 1px solid #B7B7B7;
+
+}
+
+.form-password {
+    /* Label */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 1.6px;
+
+position: absolute;
+height: 52px;
+left: 104px;
+right: 104px;
+top: 58px;
+
+}
 
 
+.authorization-input-password {
+    /* Input */
+
+box-sizing: border-box;
+width: 272px;
+height: 36px;
+background: #FFFFFF;
+border: 1px solid #B7B7B7;
+
+}
+
+.authorization-button {
+    /* text-center */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 17px 41.26px 0px 41.26px;
+
+position: absolute;
+height: 57px;
+left: 0px;
+right: 0px;
+top: 110px;
+
+}
+
+.authorization-btn {
+ /* Input */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-start;
+padding: 11.2px 31.5478px 11.9px 31.9322px;
+
+width: 189px;
+height: 40px;
+
+background: #16A6AF;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
+border-radius: 3px;
+border: none;
+}
+
+.authorization-btn-text {
+    /* Авторизоваться */
+
+width: 126px;
+height: 16px;
+
+font-family: Arial, Helvetica, sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: uppercase;
+color: #FFFFFF;
+
+}
+
+
+
+/**********END AUTHORIZaTION*************/
 .header {
 
     display: flex;
@@ -543,7 +714,9 @@ label {
 
 }
 
-[type="text"] {
+.point-chairs-input-text,
+.point-row-input-text,
+.price-regular-input-text {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -762,8 +935,6 @@ height: 26px;
 
 .seat-selection {
     /* Fieldset */
-
-/* Auto layout */
 display: flex;
 justify-content: center;
 align-items: flex-start;
@@ -961,7 +1132,8 @@ gap: 1.6px;
     gap: 1.6px;
 }
 
-[type="text-text"] {
+.price-vip-input-text {
+
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
