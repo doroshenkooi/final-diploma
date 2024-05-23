@@ -22,7 +22,10 @@ isolation: isolate;
 width: 480px;
 height: 294px;
 background: rgba(234, 233, 235, 0.95);
-
+position: fixed;
+top: 0px;
+left: 480px;
+z-index: 3;
 }
 
 .authorization-title {
@@ -1274,6 +1277,7 @@ width: 259px;
 height: 52px;
 border: 1px solid rgba(0, 0, 0, 0.3);
 position: relative;
+cursor: move;
 }
 
 .movie-one {
@@ -1393,7 +1397,8 @@ top: 172px;
 
 }
 
-.movie-hall-add-one {
+.movie-hall-add-one,
+.movie-hall-add-two {
 /* conf-step__seances-hall */
 
 display: flex;
