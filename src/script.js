@@ -102,7 +102,7 @@ basketButtonTwo.forEach((buttonTwo) => {
 const pointRowInput = document.querySelector('.point-row-input-text');
 const pointChairsInput = document.querySelector('.point-chairs-input-text');
 const frameHallWrapper = document.querySelector('.frame_hall-wrapper');
-
+const cancelHallButton = document.querySelector('.seat-selection-button');
 // Обработчик события клика по месту в кинозале
 function handleChairClick(event) {
   const chair = event.target;
@@ -135,8 +135,6 @@ function choiceOneHallBtnClick() {
     }
   }
   
-  // Очищаем зал от предыдущих мест
-  frameHallWrapper.innerHTML = '';
   // Генерируем и добавляем новые места в зал
   for (let i = 0; i < rows; i++) {
     const row = document.createElement('div');
@@ -158,15 +156,16 @@ function choiceOneHallBtnClick() {
   }
 }
 
+function cancelHallButtonClick() {
+  frameHallWrapper.innerHTML = '';
+}
 
-  const cancelHall = document.querySelector('seat-selection-button');
-cancelHall.addEventListener('click', cancelHallBtn);
 
 // Добавляем обработчики событий
 const oneHallBtn = document.querySelector('.choice-one-hall');
 oneHallBtn.addEventListener('click', choiceOneHallBtnClick);
  
-
+cancelHallButton.addEventListener('click', cancelHallButtonClick);
 
 
 
