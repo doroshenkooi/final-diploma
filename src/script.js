@@ -1,4 +1,4 @@
-/*import { fetchData } from "./fetch.js";*/
+// авторризация
 const form = document.querySelector('.authorization');
   const email = document.querySelector('.authorization-input-email').value; // Получаем значение поля email
   const password = document.querySelector('.authorization-input-password').value; // Получаем значение поля password
@@ -27,67 +27,153 @@ const form = document.querySelector('.authorization');
   }
    
   document.getElementById("btn-autoriz").addEventListener("click", sendData);
-             
-// Добавление зала
-const choosingHallOne = document.querySelector('.choosing-hall-one');
-const choosingHallTwo = document.querySelector('.choosing-hall-two');
-const choiceOneHall = document.querySelector('.choice-one-hall');
-const choiceTwoHall = document.querySelector('.choice-two-hall');
-const createHallBtn = document.querySelector('.create-hall-button');
-const priceOneHall = document.querySelector('.price-one-hall');
-const priceTwoHall = document.querySelector('.price-two-hall');
-const basketButtonOne = document.querySelectorAll('.basket-button-one');
-const basketButtonTwo = document.querySelectorAll('.basket-button-two');
-const salesOneHall = document.querySelector('.open-sales-one-hall');
-const salesTwoHall = document.querySelector('.open-sales-two-hall');
+      
+  //создание зала
+  const choosingHallOne = document.querySelector('.choosing-hall-one');
+  const choosingHallTwo = document.querySelector('.choosing-hall-two');
+  const choiceOneHall = document.querySelector('.choice-one-hall');
+  const choiceTwoHall = document.querySelector('.choice-two-hall');
+  const createHallBtn = document.querySelector('.create-hall-button');
+  const priceOneHall = document.querySelector('.price-one-hall');
+  const priceTwoHall = document.querySelector('.price-two-hall');
+  const basketButtonOne = document.querySelectorAll('.basket-button-one');
+  const basketButtonTwo = document.querySelectorAll('.basket-button-two');
+  const salesOneHall = document.querySelector('.open-sales-one-hall');
+  const salesTwoHall = document.querySelector('.open-sales-two-hall');
+const createHall = async () => {
+  try {
+    const response = await fetch('https://shfe-diplom.neto-server.ru/hall', {
+      method: 'POST',
+      body: JSON.stringify({
+        hallName: 'New Hall',
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  // При нажатии кнопки, меняем состояние элементов
-  let clickCount = 0;
-
-  createHallBtn.addEventListener('click', function() {
-    if (clickCount === 0) {
+    if (response.ok) { 
       choosingHallOne.style.display = 'flex';
       choiceOneHall.style.display = 'flex';
       priceOneHall.style.display = 'flex';
       salesOneHall.style.display = 'flex';
-    } else if (clickCount === 1) {
+      console.log('Hall created!');
+    } else {
+      console.error('Failed to create hall');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  let clickCount = 0;
+
+  createHallBtn.addEventListener('click', () => {
+     if (clickCount === 0) {
       choosingHallTwo.style.display = 'flex';
       choiceTwoHall.style.display = 'flex';
       priceTwoHall.style.display = 'flex';
       salesTwoHall.style.display = 'flex';
-      createHallBtn.disabled = true; // Отключаем кнопку после третьего нажатия
+      createHallBtn.disabled = true;
     }
   
     clickCount++;
 
-// Добавляем обработчик события для кнопок "basket-button-one"
-basketButtonOne.forEach(function(buttonOne) {
-  buttonOne.addEventListener('click', function() {
-    // При нажатии кнопки, меняем состояние элементов
+  basketButtonOne.forEach((buttonOne) => {
+  buttonOne.addEventListener('click', () => {
     choosingHallOne.style.display = 'none';
     choiceOneHall.style.display = 'none';
     priceOneHall.style.display = 'none';
   });
 });
 
-basketButtonTwo.forEach(function(buttonTwo) {
-  buttonTwo.addEventListener('click', function() {
-    // При нажатии кнопки, меняем состояние элементов
+basketButtonTwo.forEach((buttonTwo) => {
+  buttonTwo.addEventListener('click', () => {
     choosingHallTwo.style.display = 'none';
     choiceTwoHall.style.display = 'none';
     priceTwoHall.style.display = 'none';
   });
 });
   });
-function showNextElement() {
   
-  // Показываем текущий элемент
-  if (currentElementIndex < elements.length) {
-      elements[currentElementIndex].style.display = 'inline-block';
-      currentElementIndex++;
+  };
+  createHallBtn.addEventListener('click', createHall);
+//!!!!!!!!!!!!!!!!! конец создания залов
+
+// Получаем элементы DOM
+const pointRowInput = document.querySelector('.point-row-input-text');
+const pointChairsInput = document.querySelector('.point-chairs-input-text');
+const frameHallWrapper = document.querySelector('.frame_hall-wrapper');
+
+// Обработчик события клика по месту в кинозале
+function handleChairClick(event) {
+  const chair = event.target;
+  
+  if (chair.classList.contains('blocked-chairs')) {
+    chair.classList.remove('blocked-chairs');
+    chair.classList.add('regular-chairs');
+  } else if (chair.classList.contains('regular-chairs')) {
+    chair.classList.remove('regular-chairs');
+    chair.classList.add('vip-chairs');
+  } else if (chair.classList.contains('vip-chairs')) {
+    chair.classList.remove('vip-chairs');
+    chair.classList.add('blocked-chairs');
   }
 }
+
+// Обработчик события клика по кнопке зал1
+function choiceOneHallBtnClick() {
+  const rows = parseInt(pointRowInput.value);
+  const chairsPerRow = parseInt(pointChairsInput.value);
+  
+  // Создаем двумерный массив для хранения мест
+  const seats = [];
+
+  for (let i = 0; i < rows; i++) {
+    seats[i] = [];
+    
+    for (let j = 0; j < chairsPerRow; j++) {
+      seats[i][j] = 'blocked-chairs';
+    }
+  }
+  
+  // Очищаем зал от предыдущих мест
+  frameHallWrapper.innerHTML = '';
+  // Генерируем и добавляем новые места в зал
+  for (let i = 0; i < rows; i++) {
+    const row = document.createElement('div');
+    row.classList.add('conf-step__row');
+    
+    for (let j = 0; j < chairsPerRow; j++) {
+      const chair = document.createElement('div');
+      chair.classList.add(seats[i][j]);
+      chair.addEventListener('click', handleChairClick);
+      
+      const chairWrapper = document.createElement('div');
+      chairWrapper.classList.add('conf-step__chair');
+      chairWrapper.appendChild(chair);
+      
+      row.appendChild(chairWrapper);
+    }
+    
+    frameHallWrapper.appendChild(row);
+  }
+}
+
+
+  const cancelHall = document.querySelector('seat-selection-button');
+cancelHall.addEventListener('click', cancelHallBtn);
+
+// Добавляем обработчики событий
+const oneHallBtn = document.querySelector('.choice-one-hall');
+oneHallBtn.addEventListener('click', choiceOneHallBtnClick);
  
+
+
+
+
+
+
+
+
 
 // Получаем элементы списка фильмов
 const movieList = document.querySelector('.movie-list');
@@ -205,5 +291,4 @@ function drop() {
     droppedMovie.remove();
     this.classList.remove('hovered');
 }
-
 
