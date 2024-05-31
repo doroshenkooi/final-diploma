@@ -1,33 +1,36 @@
-// авторризация
-const form = document.querySelector('.authorization');
-  const email = document.querySelector('.authorization-input-email').value; // Получаем значение поля email
-  const password = document.querySelector('.authorization-input-password').value; // Получаем значение поля password
+const authorization = document.querySelector('.authorization');
+const emailInput = document.querySelector('.authorization-input-email');
+const passwordInput = document.querySelector('.authorization-input-password');
+const form = document.querySelector('.authorization-form');
 
-  function sendData(e) {
-    e.preventDefault(); 
-    fetch('https://shfe-diplom.neto-server.ru/login', {
-      method: "POST",
-      body: form
-    })
-     
-    .then(response => response.json()) 
-      .then(data => {
-       
-          if (data.success) {
-          localStorage.setItem("user", data.user);
-        } else {
-          alert("Неверный логин/пароль");
-        }
-      })
-      
-      .catch(error => {
-        console.error(error);
-        alert("Ошибка сервера");
-      });
-  }
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); 
+  
+  const email = emailInput.value;
+  const password = passwordInput.value;
+  
+  fetch('https://shfe-diplom.neto-server.ru/login', {
+    method: 'POST',
+    body: JSON.stringify({ login: email, password: password }),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Ошибка авторизации');
+    }
+  })
+  .then(result => {
+    console.log(result);
+    authorization.style.display = 'none';
    
-  document.getElementById("btn-autoriz").addEventListener("click", sendData);
-      
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
+});
+
   //создание зала
   const choosingHallOne = document.querySelector('.choosing-hall-one');
   const choosingHallTwo = document.querySelector('.choosing-hall-two');
@@ -40,30 +43,31 @@ const form = document.querySelector('.authorization');
   const basketButtonTwo = document.querySelectorAll('.basket-button-two');
   const salesOneHall = document.querySelector('.open-sales-one-hall');
   const salesTwoHall = document.querySelector('.open-sales-two-hall');
-const createHall = async () => {
-  try {
-    const response = await fetch('https://shfe-diplom.neto-server.ru/hall', {
-      method: 'POST',
-      body: JSON.stringify({
-        hallName: 'New Hall',
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) { 
-      choosingHallOne.style.display = 'flex';
-      choiceOneHall.style.display = 'flex';
-      priceOneHall.style.display = 'flex';
-      salesOneHall.style.display = 'flex';
-      console.log('Hall created!');
-    } else {
-      console.error('Failed to create hall');
+  const createHall = async () => {
+    try {
+      const response = await fetch('https://shfe-diplom.neto-server.ru/hall', {
+        method: 'POST',
+        body: JSON.stringify({
+          hallName: 'Зал 1',
+          hallName: 'Зал 2',
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) { 
+        choosingHallOne.style.display = 'flex';
+        choiceOneHall.style.display = 'flex';
+        priceOneHall.style.display = 'flex';
+        salesOneHall.style.display = 'flex';
+        console.log('Hall created!');
+      } else {
+        console.error('Failed to create hall');
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
-  } catch (error) {
-    console.error('Error:', error);
-  }
   let clickCount = 0;
 
   createHallBtn.addEventListener('click', () => {
@@ -99,10 +103,11 @@ basketButtonTwo.forEach((buttonTwo) => {
 //!!!!!!!!!!!!!!!!! конец создания залов
 
 // Получаем элементы DOM
-const pointRowInput = document.querySelector('.point-row-input-text');
-const pointChairsInput = document.querySelector('.point-chairs-input-text');
+const rowCount = document.querySelector('.point-row-input-text');
+const placeCount = document.querySelector('.point-chairs-input-text');
 const frameHallWrapper = document.querySelector('.frame_hall-wrapper');
 const cancelHallButton = document.querySelector('.seat-selection-button');
+const saveHallBtn = document.querySelector('.seat-selection-input');
 // Обработчик события клика по месту в кинозале
 function handleChairClick(event) {
   const chair = event.target;
@@ -121,11 +126,11 @@ function handleChairClick(event) {
 
 // Обработчик события клика по кнопке зал1
 function choiceOneHallBtnClick() {
-  const rows = parseInt(pointRowInput.value);
-  const chairsPerRow = parseInt(pointChairsInput.value);
+  const rows = parseInt(rowCount.value);
+  const chairsPerRow = parseInt(placeCount.value);
   
   // Создаем двумерный массив для хранения мест
-  const seats = [];
+ const seats = [];
 
   for (let i = 0; i < rows; i++) {
     seats[i] = [];
@@ -154,19 +159,47 @@ function choiceOneHallBtnClick() {
     
     frameHallWrapper.appendChild(row);
   }
+
+  function updateHallConfiguration(hallid, rowcount, placecount, config) {
+    const params = new FormData();
+    params.set('rowcount', rowcount);
+    params.set('placecount', placecount);
+    params.set('config', JSON.stringify(config));
+    params.set('price_standart', price_standart);
+    params.set('price_vip', price_vip);
+
+    
+    
+    fetch('https://shfe-diplom.neto-server.ru/hall/01', {
+      method: 'post',
+      body: params
+    })
+    .then(response => response.json())
+    .then(data => console.log(data));
+  }
+
+  // Пример использования функции
+  const arrayconfig = []; // Двумерный массив со схемой кинозала
+  const hallid = '01';
+  const rowcount = 10;
+  const placecount = 10;
+  const price_standart = 100;
+  const price_vip = 350;
+  
+  updateHallConfiguration(hallid, rowcount, placecount, arrayconfig);
 }
 
 function cancelHallButtonClick() {
   frameHallWrapper.innerHTML = '';
 }
 
-
 // Добавляем обработчики событий
 const oneHallBtn = document.querySelector('.choice-one-hall');
 oneHallBtn.addEventListener('click', choiceOneHallBtnClick);
- 
+const twoHallBtn = document.querySelector('.choice-two-hall');
+twoHallBtn.addEventListener('click', choiceOneHallBtnClick);
 cancelHallButton.addEventListener('click', cancelHallButtonClick);
-
+saveHallBtn.addEventListener('click', saveHallButtonClick);
 
 
 
