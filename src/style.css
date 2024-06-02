@@ -51,7 +51,7 @@ max-height: 25.3px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 700;
-font-size: 22px;
+font-size: 1.375rem;
 line-height: 25px;
 display: flex;
 align-items: center;
@@ -161,6 +161,7 @@ background: #16A6AF;
 box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
 border-radius: 3px;
 border: none;
+cursor: pointer;
 }
 
 .authorization-btn-text {
@@ -172,7 +173,7 @@ height: 16px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 display: flex;
 align-items: center;
@@ -232,7 +233,7 @@ color: #FFFFFF;
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
-    font-size: 10px;
+    font-size: 0.625rem;
     line-height: 12px;
     display: flex;
     align-items: center;
@@ -244,7 +245,7 @@ color: #FFFFFF;
 main {
     display: flex;
     flex-direction: column;
-    width: 962;
+    width: 962px;
     height: auto;
 }
 
@@ -370,7 +371,7 @@ h2 {
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 25px;
     text-transform: uppercase;
     color: #FFFFFF;
@@ -406,7 +407,7 @@ h5 {
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 18px;
     color: #000000;
     margin: 0;
@@ -451,7 +452,7 @@ h5 {
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 18px;
     align-items: center;
     text-transform: uppercase;
@@ -460,36 +461,24 @@ h5 {
 
 }
 
-.dash-one {
-    /* – */
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-    align-items: center;
-    text-transform: uppercase;
-
-    color: #000000;
-
-}
-
+.dash-one, 
 .dash-two {
     /* – */
 
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 18px;
     align-items: center;
     text-transform: uppercase;
 
     color: #000000;
 
-
 }
+
+ 
+ 
 
 .basket-button-one {
     /* Button */
@@ -556,7 +545,7 @@ h5 {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 16px;
     display: flex;
     align-items: center;
@@ -644,7 +633,7 @@ h5 {
     font-family: 'Arial';
     font-style: normal;
     font-weight: 900;
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 16px;
     text-transform: uppercase;
     color: #000000;
@@ -702,14 +691,15 @@ h5 {
 
 }
 
-label {
+.point-label-one,
+.point-label-two {
 
     width: auto;
     height: 14px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 14px;
     display: flex;
     align-items: center;
@@ -746,7 +736,7 @@ label {
     font-family: 'Consolas';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 21px;
     color: #848484;
     position: relative;
@@ -811,7 +801,7 @@ label {
     height: 16px;
     opacity: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     line-height: 16px;
     color: #848484;
@@ -872,7 +862,7 @@ label {
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 16px;
     color: #848484;
 
@@ -902,7 +892,7 @@ max-height: 18.4px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 400;
-font-size: 16px;
+font-size: 1rem;
 line-height: 18px;
 align-items: center;
 text-align: center;
@@ -974,7 +964,7 @@ height: 16px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 display: flex;
 align-items: center;
@@ -1018,7 +1008,7 @@ height: 16px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 display: flex;
 align-items: center;
@@ -1227,7 +1217,7 @@ height: 16px;
 font-family: 'Roboto';
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 /* identical to box height, or 114% */
 display: flex;
@@ -1330,7 +1320,7 @@ height: 32px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 display: flex;
 align-items: center;
@@ -1343,7 +1333,7 @@ height: 16px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 400;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 display: flex;
 align-items: center;
@@ -1434,7 +1424,7 @@ max-height: 18.4px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 16px;
+font-size: 1rem;
 line-height: 18px;
 display: flex;
 align-items: center;
@@ -1553,7 +1543,7 @@ max-height: 18.4px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 400;
-font-size: 16px;
+font-size: 1rem;
 line-height: 18px;
 display: flex;
 align-items: center;
@@ -1591,7 +1581,7 @@ height: 16px;
 font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 0.875rem;
 line-height: 16px;
 display: flex;
 align-items: center;

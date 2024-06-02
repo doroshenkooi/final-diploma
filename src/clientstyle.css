@@ -1,0 +1,173 @@
+body {
+ 
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px 465px;
+height: 900px;
+left: 540px;
+right: 2161px;
+top: 630px;
+background-image: url(./im/background-client.jpeg);
+background-repeat: no-repeat;
+background-size: cover;   
+}
+
+.go_cinema-header {
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 14px 0px 0px 0px;
+
+width: 990px;
+height: 67px;
+}
+
+.logo-go-cinema {
+    width: 212px;
+height: 39px;
+gap: 0px;
+opacity: 0px;
+margin-left: 15px;
+}
+
+.hall-client {
+
+width: 990px;
+height: 573pxpx;
+gap: 0px;
+opacity: 0px;
+
+
+}
+
+.hall_client_wrapper {
+    /* Section */
+width: 990px;
+height: 573px;
+background: rgba(241, 235, 230, 0.95);
+border-radius: 2px;
+}
+
+.buving_info {
+    width: auto;
+    height: auto;
+    padding: 15px 555.6px 15px 15px;
+    gap: 0px;
+    justify-content: space-between;
+    opacity: 0px;
+
+}
+
+.buying_info-description {
+/* buying__info-description */
+width: 419px;
+height: 67px;
+padding: 0px 14px 0px 0px;
+gap: 0px;
+opacity: 0px;
+
+}
+.name_film {
+    width: 405px;
+    height: 18px;
+    gap: 0px;
+    opacity: 0px;
+    
+
+}
+
+.name_film_text {
+
+width: 405px;
+height: 18px;
+max-height: 18.4px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 18px;
+display: flex;
+align-items: center;
+color: #000000;
+
+}
+
+.session_time-text {
+    /* Начало сеанса:*/
+    width: 137px;
+height: 16px;
+top: 25px;
+gap: 0px;
+opacity: 0px;
+font-family: Roboto;
+font-size: 14px;
+font-weight: 300;
+line-height: 16px;
+text-align: left;
+color: #000000;
+
+
+}
+
+.name_hall {
+
+    width: 404pxpx;
+    height: 18pxpx;
+    top: 49px;
+    padding: 0px 363.4px 0px 0px;
+    gap: 0px;
+    opacity: 0px;
+    
+}
+
+.name_hall_text {
+
+width: 41px;
+height: 18px;
+max-height: 18.4px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 18px;
+display: flex;
+align-items: center;
+color: #000000;
+
+}
+
+/* выбор места */
+
+.choosing_place{
+   
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 15px 30px;
+height: 376px;
+ width: 930px;
+height: 376px;
+gap: 0px;
+opacity: 0px;
+background: #171D24;
+
+}
+
+.choosing_place_frame {
+    width: 284px;
+height: 266px;
+padding: 30px 0px 0px 0px;
+gap: 4px;
+opacity: 0px;
+}
+
+.screen_hall {
+
+   width: 284px;
+   
+
+}

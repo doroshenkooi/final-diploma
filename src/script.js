@@ -32,74 +32,53 @@ form.addEventListener('submit', (event) => {
 });
 
   //создание зала
-  const choosingHallOne = document.querySelector('.choosing-hall-one');
-  const choosingHallTwo = document.querySelector('.choosing-hall-two');
-  const choiceOneHall = document.querySelector('.choice-one-hall');
-  const choiceTwoHall = document.querySelector('.choice-two-hall');
-  const createHallBtn = document.querySelector('.create-hall-button');
-  const priceOneHall = document.querySelector('.price-one-hall');
-  const priceTwoHall = document.querySelector('.price-two-hall');
-  const basketButtonOne = document.querySelectorAll('.basket-button-one');
-  const basketButtonTwo = document.querySelectorAll('.basket-button-two');
-  const salesOneHall = document.querySelector('.open-sales-one-hall');
-  const salesTwoHall = document.querySelector('.open-sales-two-hall');
-  const createHall = async () => {
-    try {
-      const response = await fetch('https://shfe-diplom.neto-server.ru/hall', {
-        method: 'POST',
-        body: JSON.stringify({
-          hallName: 'Зал 1',
-          hallName: 'Зал 2',
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  function addHall(hallname) {
+    fetch('https://shfe-diplom.neto-server.ru/hall', {
+      method: 'POST',
+      body: JSON.stringify({ hallname: hallname })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Новый кинозал добавлен:', data);
+      // Вызов функции для обновления списка кинозалов
+      getHalls();
+    })
+    .catch(error => {
+      console.error('Ошибка при добавлении кинозала:', error);
+    });
+  }
   
-      if (response.ok) { 
-        choosingHallOne.style.display = 'flex';
-        choiceOneHall.style.display = 'flex';
-        priceOneHall.style.display = 'flex';
-        salesOneHall.style.display = 'flex';
-        console.log('Hall created!');
-      } else {
-        console.error('Failed to create hall');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  let clickCount = 0;
-
-  createHallBtn.addEventListener('click', () => {
-     if (clickCount === 0) {
-      choosingHallTwo.style.display = 'flex';
-      choiceTwoHall.style.display = 'flex';
-      priceTwoHall.style.display = 'flex';
-      salesTwoHall.style.display = 'flex';
-      createHallBtn.disabled = true;
-    }
+  // Функция для получения списка всех кинозалов
+  function getHalls() {
+    fetch('https://shfe-diplom.neto-server.ru/hall')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Список кинозалов:', data);
+      // Обновление HTML с помощью полученных данных
+      updateHallList(data);
+    })
+    .catch(error => {
+      console.error('Ошибка при получении списка кинозалов:', error);
+    });
+  }
   
-    clickCount++;
-
-  basketButtonOne.forEach((buttonOne) => {
-  buttonOne.addEventListener('click', () => {
-    choosingHallOne.style.display = 'none';
-    choiceOneHall.style.display = 'none';
-    priceOneHall.style.display = 'none';
-  });
-});
-
-basketButtonTwo.forEach((buttonTwo) => {
-  buttonTwo.addEventListener('click', () => {
-    choosingHallTwo.style.display = 'none';
-    choiceTwoHall.style.display = 'none';
-    priceTwoHall.style.display = 'none';
-  });
-});
-  });
+  // Функция для обновления HTML списка кинозалов
+  function updateHallList(halls) {
+    const wrapper = document.querySelector('.wrapper-hall');
+    const list = document.createElement('ul');
+    
+    halls.forEach(hall => {
+      const item = document.createElement('li');
+      item.textContent = hall.name;
+      list.appendChild(item);
+    });
+    
+    wrapper.appendChild(list);
+  }
   
-  };
-  createHallBtn.addEventListener('click', createHall);
+  // Вызов функции для получения списка кинозалов при загрузке страницы
+  getHalls();
+  
 //!!!!!!!!!!!!!!!!! конец создания залов
 
 // Получаем элементы DOM

@@ -16,12 +16,12 @@
       </div>
       <form class="authorization-form">
         <div class="form-mail">
-        <label for="email">E-mail</label>
-        <input type="text" class="authorization-input-email"  placeholder="example@domain.xyz" name="email" required>
+        <label for="email" id="auth_email">E-mail</label>
+        <input id="email" type="text" class="authorization-input-email" placeholder="example@domain.xyz" name="email" required>
         </div>
         <div class="form-password">
         <label for="password">Пароль</label>
-        <input type="password" class="authorization-input-password" name="password" required>
+        <input id="password" type="password" class="authorization-input-password" name="password" required>
         </div>
         <div class="authorization-button">
         <button class="authorization-btn" type="submit" id="btn-autoriz"><span class="authorization-btn-text">авторизоваться</span></button>
@@ -113,15 +113,15 @@
           </div>
           <div class="point-chairs">
             <div class="point-label-input">
-              <div class="point-label"><label>Рядов,шт</div>
-              <div class="point-input"><input class="point-row-input-text" type="text">
+              <div class="point-label"><label for="point-label-one">Рядов,шт</div>
+              <div class="point-input"><input id="point-label-one" type="text" class="point-row-input-text" >
               </div>
               </label>
             </div>
             <div class="x-sign">x</div>
             <div class="point-label-input">
-              <div class="point-label"><label>Мест,шт</div>
-              <div class="point-input"><input class="point-chairs-input-text" type="text">
+              <div class="point-label"><label for="point-label-two">Мест,шт</div>
+              <div class="point-input"><input id="point-label-two" class="point-chairs-input-text" type="text">
               </div>
               </label>
             </div>
@@ -202,7 +202,7 @@
         </div>
        <div class="cost-type-seats">
           <div class="price-label-input">
-            <div class="price-label"><label>Цена, рублей</div>
+            <div class="price-label"><label id="price-label-one">Цена, рублей</div>
             <div class="price-input"><input class="price-regular-input-text" type="text">
             </div>
             </label>
@@ -217,7 +217,7 @@
        </div>
       <div class="cost-type-seats-vip">
         <div class="price-label-input">
-          <div class="price-label"><label>Цена, рублей</div>
+          <div class="price-label"><label id="price-label-two">Цена, рублей</div>
           <div class="price-input"><input class="price-vip-input-text" type="text">
           </div>
           </label>
