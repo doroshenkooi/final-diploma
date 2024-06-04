@@ -53,30 +53,20 @@
       <div class="wrapper-hall">
         <div class="choosing-room-available"><h5>Доступные залы:</h5></div>
         <nav class="choosing-list-managament">
+          <div ng-app="myApp" ng-controller="myCtrl">
           <div class="choosing-hall-one">
-              <div class="dash-one"><span>-</span>
-              </div>
-              <div class="choosing-hall-text"><span>зал1</span>
-              </div>
-        
-                <button class="basket-button-one" onclick="basketBtnOne()">
-              <img src="image/image.png/popcorn.png" alt="popcorn basket button">
-              </button>
+            <div class="dash-one">
+              <span>-</span>
           </div>
-          <div class="choosing-hall-two">
-            <div class="dash-two"><span>-</span>
-            </div>
-            <div class="choosing-hall-text"><span>зал2</span>
-            </div>
-
-            <button class="basket-button-two">
-              <img class="basket-button-two" src="image\image.png\popcorn.png" alt="popcorn basket button">
-            </button>
-
+          <div class="choosing-hall-text">
+              <span>${(newName)}</span>
           </div>
-        </div>
+          <button class="basket-button" ng-click="deleteHall(event)">
+          </button>
+          </div>
+          </div>
         </nav>
-        <div class="create-hall"><button class="create-hall-button">
+        <div class="create-hall"><button class="create-hall-button" id="btn-create-hall">
           <span class="create-hall-text">создать зал</span></button>
         </div>
       </div>

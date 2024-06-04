@@ -32,52 +32,76 @@ form.addEventListener('submit', (event) => {
 });
 
   //создание зала
-  function addHall(hallname) {
-    fetch('https://shfe-diplom.neto-server.ru/hall', {
-      method: 'POST',
-      body: JSON.stringify({ hallname: hallname })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Новый кинозал добавлен:', data);
-      // Вызов функции для обновления списка кинозалов
-      getHalls();
-    })
-    .catch(error => {
-      console.error('Ошибка при добавлении кинозала:', error);
-    });
-  }
   
-  // Функция для получения списка всех кинозалов
-  function getHalls() {
-    fetch('https://shfe-diplom.neto-server.ru/hall')
-    .then(response => response.json())
-    .then(data => {
-      console.log('Список кинозалов:', data);
-      // Обновление HTML с помощью полученных данных
-      updateHallList(data);
-    })
-    .catch(error => {
-      console.error('Ошибка при получении списка кинозалов:', error);
-    });
-  }
-  
-  // Функция для обновления HTML списка кинозалов
-  function updateHallList(halls) {
-    const wrapper = document.querySelector('.wrapper-hall');
-    const list = document.createElement('ul');
+
+  document.addEventListener("DOMContentLoaded", function addHall() {
+    // Обработчик нажатия на кнопку "создать зал"
+    const createHallButton =  document.getElementById("btn-create-hall");
+    createHallButton.addEventListener("click", function() {
+      // Получаем название нового кинозала
+      const hallName = new FormData();
+      const newName = prompt("Введите название нового кинозала:");
+      hallName.set('hallName', `${(newName)}`)
+        const newHall = document.createElement("div"); // Создаем новый элемент div
+        newHall.className = "choosing-hall-one"; // Добавляем класс "choosing-hall-one"
+        newHall.innerHTML = 
+            `<div class="dash-one">
+                <span>-</span>
+            </div>
+            <div class="choosing-hall-text">
+                <span>${(newName)}</span>
+            </div>
+            <button class="basket-button" ng-click="deleteHall(event)">
+            </button>;`
     
-    halls.forEach(hall => {
-      const item = document.createElement('li');
-      item.textContent = hall.name;
-      list.appendChild(item);
+        const nav = document.querySelector(".choosing-list-managament"); // Находим элемент nav
+        nav.appendChild(newHall); // Добавляем новый зал в nav
+
+// Добавляем обработчик события при нажатии на кнопку
+createHallButton.addEventListener("click", addHall);
+
+
+newHall.querySelector(".basket-button").addEventListener("click", function(event) {
+  deletehall(event);
+});
+
+function deletehall(event) {
+  event.target.parentElement.remove();
+}
+      // Отправляем запрос на добавление нового кинозала
+      fetch('https://shfe-diplom.neto-server.ru/hall', {
+        method: 'POST',
+        body: hallName
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        // Выводим список всех кинозалов
+        console.log(data);
+        newHall.style.display = 'flex';
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
+      });
+      
     });
     
-    wrapper.appendChild(list);
-  }
-  
-  // Вызов функции для получения списка кинозалов при загрузке страницы
-  getHalls();
+      fetch('https://shfe-diplom.neto-server.ru/hall', {
+        method: 'DELETE',
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        // Выводим список всех кинозалов после удаления
+        console.log(data);
+      })
+      .catch(function(error) {
+        console.error('Ошибка:', error);
+      });
+    });
+
   
 //!!!!!!!!!!!!!!!!! конец создания залов
 
