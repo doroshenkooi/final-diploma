@@ -1,3 +1,4 @@
+
 const authorization = document.querySelector('.authorization');
 const emailInput = document.querySelector('.authorization-input-email');
 const passwordInput = document.querySelector('.authorization-input-password');
@@ -33,7 +34,6 @@ form.addEventListener('submit', (event) => {
 
   //создание зала
   
-
   document.addEventListener("DOMContentLoaded", function addHall() {
     // Обработчик нажатия на кнопку "создать зал"
     const createHallButton =  document.getElementById("btn-create-hall");
@@ -53,21 +53,27 @@ form.addEventListener('submit', (event) => {
             </div>
             <button class="basket-button" ng-click="deleteHall(event)">
             </button>;`
-    
-        const nav = document.querySelector(".choosing-list-managament"); // Находим элемент nav
-        nav.appendChild(newHall); // Добавляем новый зал в nav
+            
+           const newHallBtn = document.createElement("div"); // Создаем новый элемент div
+           newHallBtn.ById = "hall-btn"; // Добавляем класс "choosing-hall-one"
+           newHallBtn.innerHTML = 
+           `<div><button class="choice-one-hall" type="button">
+           <span class="hall-button-text">${(newName)}</span></button>
+        </div>`
+           
+        const btnConfig = document.querySelector(".choice-list");
+           btnConfig.appendChild(newHallBtn);
 
-// Добавляем обработчик события при нажатии на кнопку
-createHallButton.addEventListener("click", addHall);
+    const newHallnew = document.querySelector(".choosing-list-managament"); // Находим элемент nav
+    newHallnew.appendChild(newHall); // Добавляем новый зал в nav
+  
+    newHall.querySelector('.basket-button').addEventListener('click', function() {
+      newHall.remove(); 
+      newHallBtn.remove(); 
+  });
 
 
-newHall.querySelector(".basket-button").addEventListener("click", function(event) {
-  deletehall(event);
-});
 
-function deletehall(event) {
-  event.target.parentElement.remove();
-}
       // Отправляем запрос на добавление нового кинозала
       fetch('https://shfe-diplom.neto-server.ru/hall', {
         method: 'POST',
@@ -87,8 +93,11 @@ function deletehall(event) {
       
     });
     
-      fetch('https://shfe-diplom.neto-server.ru/hall', {
+      fetch('https://shfe-diplom.neto-server.ru/hall/`${id}`',{
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
       .then(function(response) {
         return response.json();
@@ -102,9 +111,14 @@ function deletehall(event) {
       });
     });
 
+ 
+
+
+  
+
   
 //!!!!!!!!!!!!!!!!! конец создания залов
-
+//НАЧАЛО РАССТАНОВКИ
 // Получаем элементы DOM
 const rowCount = document.querySelector('.point-row-input-text');
 const placeCount = document.querySelector('.point-chairs-input-text');
@@ -163,34 +177,8 @@ function choiceOneHallBtnClick() {
     frameHallWrapper.appendChild(row);
   }
 
-  function updateHallConfiguration(hallid, rowcount, placecount, config) {
-    const params = new FormData();
-    params.set('rowcount', rowcount);
-    params.set('placecount', placecount);
-    params.set('config', JSON.stringify(config));
-    params.set('price_standart', price_standart);
-    params.set('price_vip', price_vip);
-
-    
-    
-    fetch('https://shfe-diplom.neto-server.ru/hall/01', {
-      method: 'post',
-      body: params
-    })
-    .then(response => response.json())
-    .then(data => console.log(data));
-  }
-
-  // Пример использования функции
-  const arrayconfig = []; // Двумерный массив со схемой кинозала
-  const hallid = '01';
-  const rowcount = 10;
-  const placecount = 10;
-  const price_standart = 100;
-  const price_vip = 350;
   
-  updateHallConfiguration(hallid, rowcount, placecount, arrayconfig);
-}
+
 
 function cancelHallButtonClick() {
   frameHallWrapper.innerHTML = '';
@@ -204,9 +192,8 @@ twoHallBtn.addEventListener('click', choiceOneHallBtnClick);
 cancelHallButton.addEventListener('click', cancelHallButtonClick);
 saveHallBtn.addEventListener('click', saveHallButtonClick);
 
-
-
-
+}
+//Конец РАССТАНОВКИ
 
 
 

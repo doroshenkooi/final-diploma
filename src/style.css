@@ -422,15 +422,14 @@ h5 {
     gap: 10px;
 
     position: absolute;
-    height: 50px;
+    height: auto;
     left: 129px;
     right: 42px;
     top: 67px;
 
 }
 
-.choosing-hall-one,
-.choosing-hall-two {
+.choosing-hall-one {
     /* Item */
     /*none*/
     display: none;
@@ -462,8 +461,7 @@ h5 {
 
 }
 
-.dash-one, 
-.dash-two {
+.dash-one {
     /* – */
 
     font-family: Arial, Helvetica, sans-serif;
@@ -494,18 +492,18 @@ h5 {
 
 .create-hall-button {
     /* Button */
-
+   
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     padding: 11.2px 31.3815px 11.9px 31.7285px;
     cursor: pointer;
-    position: relative;
+    position: absolute;
     width: 159px;
     height: 40px;
     left: 104px;
-    top: 139px;
-
+    top: 109px;
+  
     background: #16A6AF;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
     border-radius: 3px;
@@ -580,6 +578,7 @@ h5 {
     align-items: center;
     z-index: 2;
 }
+
 
 .choice-one-hall,
 .choice-two-hall,
