@@ -54,14 +54,7 @@
         <div class="choosing-room-available"><h5>Доступные залы:</h5></div>
         <nav class="choosing-list-managament">
           <div class="choosing-hall-one" id="hall-btn">
-            <div class="dash-one">
-              <span>-</span>
-          </div>
-          <div class="choosing-hall-text">
-              <span></span>
-          </div>
-          <button class="basket-button" ng-click="deleteHall(event)">
-          </button>
+           
           </div>
         </nav>
         <div class="create-hall"><button class="create-hall-button" id="btn-create-hall">
@@ -100,15 +93,15 @@
           </div>
           <div class="point-chairs">
             <div class="point-label-input">
-              <div class="point-label"><label for="point-label-one">Рядов,шт</div>
-              <div class="point-input"><input id="point-label-one" type="text" class="point-row-input-text" >
+              <div class="point-label"><label for="rowcount">Рядов,шт</div>
+              <div class="point-input"><input id="rowcount" type="text" class="point-row-input-text" >
               </div>
               </label>
             </div>
             <div class="x-sign">x</div>
             <div class="point-label-input">
-              <div class="point-label"><label for="point-label-two">Мест,шт</div>
-              <div class="point-input"><input id="point-label-two" class="point-chairs-input-text" type="text">
+              <div class="point-label"><label for="placecount">Мест,шт</div>
+              <div class="point-input"><input id="placecount" class="point-chairs-input-text" type="text">
               </div>
               </label>
             </div>
@@ -153,8 +146,8 @@
         
       </div>
        <div class="seat-selection">
-        <button type="button" class="seat-selection-button"><span class="selection-button-text">отменить</span></button>
-        <button type="input" class="seat-selection-input"><div class="selection-input-text">сохранить</div></button>
+        <button type="button" class="seat-selection-button" id="close-seats"><span class="selection-button-text">отменить</span></button>
+        <button type="input" class="seat-selection-input" id="save-seats"><div class="selection-input-text">сохранить</div></button>
       </div>
     </div>
   </div>
