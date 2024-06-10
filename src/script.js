@@ -39,78 +39,47 @@ form.addEventListener('submit', (event) => {
     const createHallButton =  document.getElementById("btn-create-hall");
     createHallButton.addEventListener("click", function() {
       // Получаем название нового кинозала
-      const hallName = new FormData();
+      
       const newName = prompt("Введите название нового кинозала:");
-      hallName.set('hallName', `${(newName)}`)
+
         const newHall = document.createElement("div"); // Создаем новый элемент div
         newHall.className = "choosing-hall-one"; // Добавляем класс "choosing-hall-one"
         newHall.innerHTML = 
-            `<div class="dash-one">
+            ` <div class="choosing-hall-one" id="hall-btn-one">
+          
+            <div class="dash-one">
                 <span>-</span>
             </div>
             <div class="choosing-hall-text">
                 <span>${(newName)}</span>
             </div>
             <button class="basket-button">
-            </button>;`
-            
-           const newHallBtn = document.createElement("div"); // Создаем новый элемент div
+            </button>;
+            </div>`
+            const newHallnew = document.querySelector(".choosing-list-managament"); // Находим элемент nav
+    newHallnew.appendChild(newHall); // Добавляем новый зал в nav
+          
+    const newHallBtn = document.createElement("div"); // Создаем новый элемент div
            newHallBtn.ById = "hall-btn"; // Добавляем класс "choosing-hall-one"
            newHallBtn.innerHTML = 
            `<div><button class="choice-one-hall" type="button">
            <span class="hall-button-text">${(newName)}</span></button>
         </div>`
-      
+        const choiceOneHallBtn = newHallBtn.querySelector(".choice-one-hall"); // находим newhallbtn
+        
+        choiceOneHallBtn.addEventListener('click', choiceOneHallBtnClick);
         const btnConfig = document.querySelector(".choice-list");
            btnConfig.appendChild(newHallBtn);
 
-    const newHallnew = document.querySelector(".choosing-list-managament"); // Находим элемент nav
-    newHallnew.appendChild(newHall); // Добавляем новый зал в nav
-  
     newHall.querySelector('.basket-button').addEventListener('click', function() {
       newHall.remove(); 
       newHallBtn.remove(); 
+    })
+
   });
 
-      // Отправляем запрос на добавление нового кинозала
-      fetch('https://shfe-diplom.neto-server.ru/hall', {
-        method: 'POST',
-        body: hallName
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        // Выводим список всех кинозалов
-        console.log(data);
-        newHall.style.display = 'flex';
-      })
-      .catch(error => {
-        console.error('Ошибка:', error);
-      });
-      
     });
-    
-      fetch('https://shfe-diplom.neto-server.ru/hall/`${id}`',{
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        // Выводим список всех кинозалов после удаления
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Ошибка:', error);
-      });
-   
-
-    });
-
+  
 //!!!!!!!!!!!!!!!!! конец создания залов
 //НАЧАЛО РАССТАНОВКИ
 const pointRowInput = document.querySelector('.point-row-input-text');
@@ -133,7 +102,7 @@ function handleChairClick(event) {
   }
 }
 
-// Обработчик события клика по кнопке зал1
+// Обработчик события клика по кнопке зал
 function choiceOneHallBtnClick() {
   const rows = parseInt(pointRowInput.value);
   const chairsPerRow = parseInt(pointChairsInput.value);
@@ -176,9 +145,7 @@ function cancelHallButtonClick() {
 
 
 // Добавляем обработчики событий
-const oneHallBtn = document.querySelector('.create-hall-button');
-oneHallBtn.addEventListener('click', choiceOneHallBtnClick);
- 
+
 cancelHallButton.addEventListener('click', cancelHallButtonClick);
 
 

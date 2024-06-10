@@ -432,11 +432,11 @@ h5 {
 .choosing-hall-one {
     /* Item */
     /*none*/
-    display: none;
+    display: flex;
     align-items: flex-start;
     padding: 0px 732.16px 0px 0px;
-    gap: 3.84px;
     isolation: isolate;
+    gap: 3.84px;
     width: 791px;
     height: 20px;
   
@@ -502,7 +502,7 @@ h5 {
     width: 159px;
     height: 40px;
     left: 104px;
-    top: 109px;
+    top: 119px;
   
     background: #16A6AF;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);
@@ -591,7 +591,7 @@ h5 {
     flex-direction: column;
     align-items: flex-start;
     padding: 15.41px 23.03px 13.9px 23.1px;
-
+cursor: pointer;
     width: 90px;
     height: 46px;
 
