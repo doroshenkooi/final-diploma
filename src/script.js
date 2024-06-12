@@ -35,15 +35,15 @@ form.addEventListener('submit', (event) => {
   //создание зала
   
   document.addEventListener("DOMContentLoaded", function addHall() {
-    // Обработчик нажатия на кнопку "создать зал"
+    // "создать зал"
     const createHallButton =  document.getElementById("btn-create-hall");
     createHallButton.addEventListener("click", function() {
       // Получаем название нового кинозала
       
       const newName = prompt("Введите название нового кинозала:");
-
-        const newHall = document.createElement("div"); // Создаем новый элемент div
-        newHall.className = "choosing-hall-one"; // Добавляем класс "choosing-hall-one"
+  
+        const newHall = document.createElement("div"); 
+        newHall.className = "choosing-hall-one"; 
         newHall.innerHTML = 
             ` <div class="choosing-hall-one" id="hall-btn-one">
           
@@ -54,8 +54,60 @@ form.addEventListener('submit', (event) => {
                 <span>${(newName)}</span>
             </div>
             <button class="basket-button">
-            </button>;
+            </button>
             </div>`
+
+            const hallName = new FormData();
+            hallName.set('hallName', `${(newName)}`)
+            fetch('https://shfe-diplom.neto-server.ru/hall', {
+              method: 'POST',
+              body: hallName
+            })
+            .then(response => {
+              return response.json();
+            })
+            .then(data => {
+              const id = data.id; 
+           savelHallBtn.addEventListener('click', saveHallButtonClick);
+              console.log(data);
+              function saveHallButtonClick() {
+                const hallId = `${id}`;
+                const rowCount = document.getElementById('.rowcount');
+                const placeCount = document.getElementById('.placecount');
+                const config = [];
+                
+                const url = `https://shfe-diplom.neto-server.ru/hall/${hallId}`;
+                const body = JSON.stringify({
+                  rowcount: rowCount,
+                  placecount: placeCount,
+                  config: config
+                });
+                
+                fetch(url, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: body
+                })
+                .then(response => response.json())
+                .then(data => {
+                  
+                  // Обработка информации об измененном кинозале
+                  console.log(data);
+                })
+                .catch(error => {
+                  // Обработка ошибки
+                  console.log(error);
+                });
+              }
+            })
+            .catch(error => {
+              console.error('Ошибка:', error);
+            });
+            
+        
+           
             const newHallnew = document.querySelector(".choosing-list-managament"); // Находим элемент nav
     newHallnew.appendChild(newHall); // Добавляем новый зал в nav
           
@@ -68,24 +120,26 @@ form.addEventListener('submit', (event) => {
         const choiceOneHallBtn = newHallBtn.querySelector(".choice-one-hall"); // находим newhallbtn
         
         choiceOneHallBtn.addEventListener('click', choiceOneHallBtnClick);
-        const btnConfig = document.querySelector(".choice-list");
+        const btnConfig = document.querySelector('.choice-list');
            btnConfig.appendChild(newHallBtn);
 
     newHall.querySelector('.basket-button').addEventListener('click', function() {
       newHall.remove(); 
       newHallBtn.remove(); 
+    
     })
 
   });
 
     });
-  
+   
 //!!!!!!!!!!!!!!!!! конец создания залов
 //НАЧАЛО РАССТАНОВКИ
 const pointRowInput = document.querySelector('.point-row-input-text');
 const pointChairsInput = document.querySelector('.point-chairs-input-text');
 const frameHallWrapper = document.querySelector('.frame_hall-wrapper');
 const cancelHallButton = document.querySelector('.seat-selection-button');
+const savelHallBtn = document.querySelector('.seat-selection-input')
 // Обработчик события клика по месту в кинозале
 function handleChairClick(event) {
   const chair = event.target;
@@ -102,12 +156,12 @@ function handleChairClick(event) {
   }
 }
 
-// Обработчик события клика по кнопке зал
+// кнопка зал
 function choiceOneHallBtnClick() {
   const rows = parseInt(pointRowInput.value);
   const chairsPerRow = parseInt(pointChairsInput.value);
   
-  // Создаем двумерный массив для хранения мест
+  // хранения мест
   const seats = [];
 
   for (let i = 0; i < rows; i++) {
@@ -118,7 +172,7 @@ function choiceOneHallBtnClick() {
     }
   }
   
-  // Генерируем и добавляем новые места в зал
+  // новые места в зал
   for (let i = 0; i < rows; i++) {
     const row = document.createElement('div');
     row.classList.add('conf-step__row');
@@ -137,23 +191,33 @@ function choiceOneHallBtnClick() {
     
     frameHallWrapper.appendChild(row);
   }
+ 
 }
 
 function cancelHallButtonClick() {
   frameHallWrapper.innerHTML = '';
+  fetch(`https://shfe-diplom.neto-server.ru/hall/${hallId}`,{
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    // Выводим список всех кинозалов после удаления
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
 }
 
-
-// Добавляем обработчики событий
-
 cancelHallButton.addEventListener('click', cancelHallButtonClick);
-
-
-    
-    
+ 
     //Конец РАССТАНОВКИ
     
-
 // Получаем элементы списка фильмов
 const movieList = document.querySelector('.movie-list');
 const addMovieBtn = document.querySelector('.add-movie-btn');

@@ -165,9 +165,227 @@ gap: 4px;
 opacity: 0px;
 }
 
-.screen_hall {
+.choosing_place_screen {
 
    width: 284px;
-   
+   height: 40px;
+    background-image: url(./im/screen-client.png);
+background-repeat: no-repeat;
+background-size: contain;
 
+}
+
+.type_chairs_status {
+/* buying-scheme__legend */
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 30px 0.0169983px 0px 0px;
+gap: 0px;
+
+width: 930px;
+height: 80px;
+
+}
+
+.type_chairs {
+    /* col:margin */
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+padding: 0px 0px 0px 332.413px;
+
+width: 517px;
+min-width: 184.1px;
+height: 50px;
+
+}
+
+.col_type {
+    /* col */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 14.1px 0px 0px;
+gap: 10px;
+
+width: 184px;
+max-width: 250px;
+height: 50px;
+}
+
+.place_free {
+    /* buying-scheme__legend-price */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px 24.1px 0px 0px;
+
+width: 170px;
+height: 20px;
+}
+
+.place_free_img {
+    /* span.buying-scheme__chair */
+box-sizing: border-box;
+width: 20px;
+height: 20px;
+background: #FFFFFF;
+border: 1px solid #525252;
+border-radius: 4px;
+}
+
+.place_free_text {
+    /* Свободно (250руб) */
+width: 125px;
+height: 16px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+color: #FFFFFF;
+}
+
+.place_free_vip {
+    /* buying-scheme__legend-price */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 170px;
+height: 20px;
+}
+
+.place_free_vip_img {
+    /* span.buying-scheme__chair */
+box-sizing: border-box;
+width: 20px;
+height: 20px;
+background: #F9953A;
+border: 1px solid #525252;
+border-radius: 4px;
+
+}
+.place_free_vip_text {
+    /* Свободно VIP (350руб) */
+
+width: 150px;
+height: 16px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+color: #FFFFFF;
+
+}
+.status_chairs {
+    /* col:margin */
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 332.413px 0px 0px;
+
+width: 413px;
+min-width: 81.06px;
+height: 50px;
+
+}
+.col_status {
+/* col */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 81px;
+max-width: 250px;
+height: 50px;
+
+}
+
+.place_occupied {
+    /* buying-scheme__legend-price */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px 12.06px 0px 0px;
+
+width: 81px;
+height: 20px;
+
+}
+
+.place_occupied_img {
+    /* span.buying-scheme__chair */
+box-sizing: border-box;
+width: 20px;
+height: 20px;
+border: 1px solid #525252;
+border-radius: 4px;
+}
+
+.place_occupied_text {
+    /* Занято */
+
+width: 49px;
+height: 16px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+color: #FFFFFF;
+}
+
+.place_occupied_vip {
+/* buying-scheme__legend-price */
+position: relative;
+width: 81px;
+height: 20px;
+
+}
+
+.place_occupied_vip_img {
+    /* span.buying-scheme__chair */
+box-sizing: border-box;
+position: absolute;
+width: 24px;
+height: 24px;
+left: -2px;
+top: calc(50% - 24px/2);
+background: #25C4CE;
+border: 1px solid #525252;
+box-shadow: 0px 0px 4px #16A6AF;
+border-radius: 4px;
+
+}
+.place_occupied_vip_text {
+    /* Выбрано */
+position: absolute;
+width: 62px;
+height: 16px;
+left: 20px;
+top: 0px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+color: #FFFFFF;
 }
