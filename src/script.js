@@ -74,44 +74,54 @@ form.addEventListener('submit', (event) => {
               console.error('Ошибка:', error);
             });
             
-        
-           
-            const newHallnew = document.querySelector(".choosing-list-managament"); // Находим элемент nav
-    newHallnew.appendChild(newHall); // Добавляем новый зал в nav
-          
-    const newHallBtn = document.createElement("div"); // Создаем новый элемент div
-           newHallBtn.ById = "hall-btn"; // Добавляем класс "choosing-hall-one"
+            const newHallnew = document.querySelector(".choosing-list-managament");
+    newHallnew.appendChild(newHall); 
+          // кнопка конфигурация зала
+    const newHallBtn = document.createElement("div"); 
+           newHallBtn.ById = "hall-btn"; 
            newHallBtn.innerHTML = 
            `<div><button class="choice-one-hall" type="button">
            <span class="hall-button-text">${(newName)}</span></button>
         </div>`
-        const choiceOneHallBtn = newHallBtn.querySelector(".choice-one-hall"); // находим newhallbtn
+        const choiceOneHallBtn = newHallBtn.querySelector(".choice-one-hall"); 
         
         choiceOneHallBtn.addEventListener('click', choiceOneHallBtnClick);
         const btnConfig = document.querySelector('.choice-list');
            btnConfig.appendChild(newHallBtn);
-
+           // кнопка стоимость билетов
+           const newHallpriceBtn = document.createElement("div"); 
+           newHallpriceBtn.className = "price-one-hall"; 
+           newHallpriceBtn.innerHTML = 
+           `<button class="price-one-hall" type="button">
+            <span class="hall-button-text">${(newName)}</span></button>`
+       
+        const pricebtnConfig = document.querySelector(".price-list");
+        pricebtnConfig.appendChild(newHallpriceBtn);
+       
+       // кнопка корзина
     newHall.querySelector('.basket-button').addEventListener('click', function() {
       newHall.remove(); 
       newHallBtn.remove(); 
-    
+      newHallpriceBtn.remove();
     })
 
   });
 
     });
    
+    
 //!!!!!!!!!!!!!!!!! конец создания залов
-//НАЧАЛО РАССТАНОВКИ
 const pointRowInput = document.querySelector('.point-row-input-text');
 const pointChairsInput = document.querySelector('.point-chairs-input-text');
 const frameHallWrapper = document.querySelector('.frame_hall-wrapper');
 const cancelHallButton = document.querySelector('.seat-selection-button');
-const saveHallBtn = document.querySelector('.seat-selection-input')
-// Обработчик события клика по месту в кинозале
+const saveHallBtn = document.querySelector('.seat-selection-input');
+
+
+// обработчик события клика по месту в кинозале
 function handleChairClick(event) {
   const chair = event.target;
-  
+
   if (chair.classList.contains('blocked-chairs')) {
     chair.classList.remove('blocked-chairs');
     chair.classList.add('regular-chairs');
@@ -125,7 +135,7 @@ function handleChairClick(event) {
 }
 
 // кнопка зал
-
+// начало расстановки
 function choiceOneHallBtnClick() {
   const rows = parseInt(pointRowInput.value);
   const chairsPerRow = parseInt(pointChairsInput.value);
@@ -193,14 +203,11 @@ function choiceOneHallBtnClick() {
    saveHallBtn.addEventListener('click', saveHallButtonClick);
 }
 
-   
-
-      
 
 
 function cancelHallButtonClick() {
   frameHallWrapper.innerHTML = '';
-  fetch(`https://shfe-diplom.neto-server.ru/hall/{hallId}`,{
+  fetch('https://shfe-diplom.neto-server.ru/hall/{hallId}',{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -222,3 +229,18 @@ cancelHallButton.addEventListener('click', cancelHallButtonClick);
  
     //Конец РАССТАНОВКИ
     
+    // Цена билетов
+        const priceHallBtn = document.getElementById("price_save");
+    function priceHallBtnClick() {
+      const params = new FormData()
+      params.set('priceStandart', '100')
+      params.set('priceVip', '300')
+      fetch( 'https://shfe-diplom.neto-server.ru/price/34', {
+          method: 'POST',
+          body: params 
+      })
+          .then( response => response.json())
+          .then( data => console.log( data ));
+    }
+
+    priceHallBtn.addEventListener('click', priceHallBtnClick);
