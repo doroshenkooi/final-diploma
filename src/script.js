@@ -67,13 +67,20 @@ form.addEventListener('submit', (event) => {
               return response.json();
             })
             .then(data => {
+              let lastIndex = data.result.halls.length - 1;
+              let IdHall = data.result.halls[lastIndex].id;
+      
+              console.log(IdHall);
+              window.localStorage.setItem('IDHall', `${(IdHall)}`)
               console.log(data);
-         
-            })
+               
+              })
             .catch(error => {
               console.error('Ошибка:', error);
             });
             
+        
+           
             const newHallnew = document.querySelector(".choosing-list-managament");
     newHallnew.appendChild(newHall); 
           // кнопка конфигурация зала
@@ -107,49 +114,50 @@ form.addEventListener('submit', (event) => {
 
   });
 
-    });
+});
    
     
 //!!!!!!!!!!!!!!!!! конец создания залов
+
+
+// получаем элементы со страницы
 const pointRowInput = document.querySelector('.point-row-input-text');
 const pointChairsInput = document.querySelector('.point-chairs-input-text');
 const frameHallWrapper = document.querySelector('.frame_hall-wrapper');
 const cancelHallButton = document.querySelector('.seat-selection-button');
 const saveHallBtn = document.querySelector('.seat-selection-input');
 
+let arrayConfiguration = [];
 
-// обработчик события клика по месту в кинозале
+// Обработчик события клика по месту в кинозале
 function handleChairClick(event) {
   const chair = event.target;
+  const rowIndex = chair.dataset.rowindex;
+  const colIndex = chair.dataset.colindex;
 
   if (chair.classList.contains('blocked-chairs')) {
     chair.classList.remove('blocked-chairs');
     chair.classList.add('regular-chairs');
+    arrayConfiguration[rowIndex][colIndex] = 'standart';
   } else if (chair.classList.contains('regular-chairs')) {
     chair.classList.remove('regular-chairs');
     chair.classList.add('vip-chairs');
+    arrayConfiguration[rowIndex][colIndex] = 'vip';
   } else if (chair.classList.contains('vip-chairs')) {
     chair.classList.remove('vip-chairs');
     chair.classList.add('blocked-chairs');
+    arrayConfiguration[rowIndex][colIndex] = 'disabled';
   }
 }
 
-// кнопка зал
-// начало расстановки
+// Кнопка 'Зал'
 function choiceOneHallBtnClick() {
   const rows = parseInt(pointRowInput.value);
   const chairsPerRow = parseInt(pointChairsInput.value);
 
-  // Хранение мест
-  const config = [];
-
-  for (let i = 0; i < rows; i++) {
-    config[i] = [];
-
-    for (let j = 0; j < chairsPerRow; j++) {
-      config[i][j] = 'blocked-chairs';
-    }
-  }
+  // Очистить текущую конфигурацию и массив
+  frameHallWrapper.innerHTML = '';
+  arrayConfiguration = new Array(rows).fill(0).map(() => new Array(chairsPerRow).fill('blocked-chairs'));
 
   // Новые места в зал
   for (let i = 0; i < rows; i++) {
@@ -158,7 +166,9 @@ function choiceOneHallBtnClick() {
 
     for (let j = 0; j < chairsPerRow; j++) {
       const chair = document.createElement('div');
-      chair.classList.add(config[i][j]);
+      chair.classList.add(arrayConfiguration[i][j]);
+      chair.dataset.rowindex = i;
+      chair.dataset.colindex = j;
       chair.addEventListener('click', handleChairClick);
 
       const chairWrapper = document.createElement('div');
@@ -170,48 +180,46 @@ function choiceOneHallBtnClick() {
 
     frameHallWrapper.appendChild(row);
   }
- 
-  function saveHallButtonClick() {
-   
-    const config = [];
-    const params = new FormData();
-
-    params.set('rowCount', rows);
-    params.set('placeCount', chairsPerRow);
-    params.set('config', JSON.stringify(config));
- 
-    const url = 'https://shfe-diplom.neto-server.ru/hall/{hallId}';
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Обработка информации об измененном кинозале
-      console.log(data);
-    })
-    .catch(error => {
-      // Обработка ошибки
-      console.error(error);
-    });
-
-  }
-   saveHallBtn.addEventListener('click', saveHallButtonClick);
 }
-
-
+// отправка массива на сервер при нажатии кнопки "Сохранить"
+function saveHallBtnClick() {
+  const rows = parseInt(pointRowInput.value);
+  const chairsPerRow = parseInt(pointChairsInput.value);
+ 
+      const params = new FormData()
+      const hallId = JSON.parse(window.localStorage.getItem('IDHall'));
+      params.set('rowCount', rows)
+      params.set('placeCount', chairsPerRow)
+      params.set('config', JSON.stringify(arrayConfiguration))
+      
+     
+  
+      fetch(`https://shfe-diplom.neto-server.ru/hall/${hallId}`, {
+        method: 'POST',
+        body: params
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Обработка информации об измененном кинозале
+        console.log(data);
+      })
+      .catch(error => {
+        // Обработка ошибки
+        console.error(error);
+      });
+  
+    }
+  
+// Добавление обработчика клика на кнопку "Сохранить"
+saveHallBtn.addEventListener('click', saveHallBtnClick);
+  
+ const hallId = JSON.parse(window.localStorage.getItem('IDHall'));
 
 function cancelHallButtonClick() {
+ 
   frameHallWrapper.innerHTML = '';
-  fetch('https://shfe-diplom.neto-server.ru/hall/{hallId}',{
+  fetch(`https://shfe-diplom.neto-server.ru/hall/${hallId}`,{
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
   .then(response => {
     return response.json();
