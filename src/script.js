@@ -91,8 +91,8 @@ form.addEventListener('submit', (event) => {
            <span class="hall-button-text">${(newName)}</span></button>
         </div>`
         const choiceOneHallBtn = newHallBtn.querySelector(".choice-one-hall"); 
-        
         choiceOneHallBtn.addEventListener('click', choiceOneHallBtnClick);
+
         const btnConfig = document.querySelector('.choice-list');
            btnConfig.appendChild(newHallBtn);
            // кнопка стоимость билетов
@@ -101,7 +101,8 @@ form.addEventListener('submit', (event) => {
            newHallpriceBtn.innerHTML = 
            `<button class="price-one-hall" type="button">
             <span class="hall-button-text">${(newName)}</span></button>`
-       
+           
+
         const pricebtnConfig = document.querySelector(".price-list");
         pricebtnConfig.appendChild(newHallpriceBtn);
        
@@ -116,9 +117,7 @@ form.addEventListener('submit', (event) => {
 
 });
    
-    
 //!!!!!!!!!!!!!!!!! конец создания залов
-
 
 // получаем элементы со страницы
 const pointRowInput = document.querySelector('.point-row-input-text');
@@ -185,15 +184,13 @@ function choiceOneHallBtnClick() {
 function saveHallBtnClick() {
   const rows = parseInt(pointRowInput.value);
   const chairsPerRow = parseInt(pointChairsInput.value);
- 
+
       const params = new FormData()
       const hallId = JSON.parse(window.localStorage.getItem('IDHall'));
       params.set('rowCount', rows)
       params.set('placeCount', chairsPerRow)
       params.set('config', JSON.stringify(arrayConfiguration))
       
-     
-  
       fetch(`https://shfe-diplom.neto-server.ru/hall/${hallId}`, {
         method: 'POST',
         body: params
@@ -209,14 +206,11 @@ function saveHallBtnClick() {
       });
   
     }
-  
 // Добавление обработчика клика на кнопку "Сохранить"
 saveHallBtn.addEventListener('click', saveHallBtnClick);
   
- const hallId = JSON.parse(window.localStorage.getItem('IDHall'));
-
 function cancelHallButtonClick() {
- 
+  const hallId = JSON.parse(window.localStorage.getItem('IDHall'));
   frameHallWrapper.innerHTML = '';
   fetch(`https://shfe-diplom.neto-server.ru/hall/${hallId}`,{
     method: 'DELETE',
@@ -238,17 +232,31 @@ cancelHallButton.addEventListener('click', cancelHallButtonClick);
     //Конец РАССТАНОВКИ
     
     // Цена билетов
-        const priceHallBtn = document.getElementById("price_save");
-    function priceHallBtnClick() {
+    const priceStandartInput = document.querySelector('.price-regular-input-text');
+const priceVipInput = document.querySelector('.price-vip-input-text');
+        
+        
+   /* function priceOneHallBtnClick() {
+      const standartPrice = parseInt(priceStandartInput.value);
+      const vipPrice= parseInt(priceVipInput.value);
+      
+    }
+    const priceOneHallBtn = newHallBtn.querySelector('.price-one-hall'); 
+    priceOneHallBtn.addEventListener('click', priceOneHallBtnClick);
+*/
+    function priceSaveHallBtnClick() {
+      const standartPrice = parseInt(priceStandartInput.value);
+      const vipPrice= parseInt(priceVipInput.value);
+      const hallId = JSON.parse(window.localStorage.getItem('IDHall'));
       const params = new FormData()
-      params.set('priceStandart', '100')
-      params.set('priceVip', '300')
-      fetch( 'https://shfe-diplom.neto-server.ru/price/34', {
+      params.set('priceStandart', standartPrice)
+      params.set('priceVip', vipPrice)
+      fetch( `https://shfe-diplom.neto-server.ru/price/${hallId}`, {
           method: 'POST',
           body: params 
       })
           .then( response => response.json())
           .then( data => console.log( data ));
     }
-
-    priceHallBtn.addEventListener('click', priceHallBtnClick);
+const priceSaveHallBtn = document.getElementById('price_save');
+    priceSaveHallBtn.addEventListener('click', priceSaveHallBtnClick);
