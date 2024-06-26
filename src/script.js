@@ -234,16 +234,16 @@ cancelHallButton.addEventListener('click', cancelHallButtonClick);
     // Цена билетов
     const priceStandartInput = document.querySelector('.price-regular-input-text');
 const priceVipInput = document.querySelector('.price-vip-input-text');
+const addNewMovieBtn =  document.querySelectorAll(".add-movie-btn");
+addNewMovieBtn.addEventListener("click", function() {
+  // Получаем название нового кинозала
+
+    const newMovie = document.createElement("div"); 
+    newMovie.className = "choosing-hall-one"; 
+    newMovie.innerHTML = 
+})
         
-        
-   /* function priceOneHallBtnClick() {
-      const standartPrice = parseInt(priceStandartInput.value);
-      const vipPrice= parseInt(priceVipInput.value);
-      
-    }
-    const priceOneHallBtn = newHallBtn.querySelector('.price-one-hall'); 
-    priceOneHallBtn.addEventListener('click', priceOneHallBtnClick);
-*/
+ 
     function priceSaveHallBtnClick() {
       const standartPrice = parseInt(priceStandartInput.value);
       const vipPrice= parseInt(priceVipInput.value);
@@ -260,3 +260,107 @@ const priceVipInput = document.querySelector('.price-vip-input-text');
     }
 const priceSaveHallBtn = document.getElementById('price_save');
     priceSaveHallBtn.addEventListener('click', priceSaveHallBtnClick);
+
+      
+// Получаем элементы списка фильмов
+const movieList = document.querySelector('.movie-list');
+const addMovieBtn = document.querySelector('.add-movie-btn');
+
+// Функция для добавления фильма в список
+function addMovie() {
+  // Создаем элементы для нового фильма
+  
+
+  // Настройка новых элементов
+  deleteIcon.src = 'image/image.png/delete_icon.png';
+  deleteIcon.alt = 'иконка удаления';
+  deleteBtn.appendChild(deleteIcon);
+  movieBtnContainer.appendChild(deleteBtn);
+  movieContentText.appendChild(movieTitle);
+  movieContentText.appendChild(movieDuration);
+  newMovie.appendChild(moviePost);
+  newMovie.appendChild(movieContentText);
+  newMovie.appendChild(movieBtnContainer);
+
+  // Добавляем новый фильм в список
+  movieList.appendChild(newMovie);
+}
+
+// Функция для удаления фильма из списка
+function deleteMovie(event) {
+  const movieItem = event.target.closest('.movie-one');
+  if (movieItem) {
+    movieItem.remove();
+  }
+}
+
+// Обработчик клика по кнопке "Добавить фильм"
+addMovieBtn.addEventListener('click', addMovie);
+
+// Обработчик клика по кнопке удаления фильма
+movieList.addEventListener('click', deleteMovie);
+
+// Получение необходимых элементов
+const movieOneElements = Array.from(document.getElementsByClassName('movie-one'));
+const movieHallOne = document.getElementsByClassName('movie-hall-add-one')[0];
+const movieHallTwo = document.getElementsByClassName('movie-hall-add-two')[0];
+
+// Обработчики событий для запуска перетаскивания фильмов
+movieOneElements.forEach((movie) => {
+    movie.addEventListener('dragstart', dragStart);
+    movie.addEventListener('dragend', dragEnd);
+});
+
+// Обработчики событий для залов, в которые можно перетащить фильмы
+movieHallOne.addEventListener('dragover', dragOver);
+movieHallOne.addEventListener('dragenter', dragEnter);
+movieHallOne.addEventListener('dragleave', dragLeave);
+movieHallOne.addEventListener('drop', drop);
+
+movieHallTwo.addEventListener('dragover', dragOver);
+movieHallTwo.addEventListener('dragenter', dragEnter);
+movieHallTwo.addEventListener('dragleave', dragLeave);
+movieHallTwo.addEventListener('drop', drop);
+
+// Функции для обработки событий перетаскивания
+function dragStart() {
+    this.classList.add('dragging');
+}
+
+function dragEnd() {
+    this.classList.remove('dragging');
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function dragEnter(e) {
+    e.preventDefault();
+    this.classList.add('hovered');
+}
+
+function dragLeave() {
+    this.classList.remove('hovered');
+}
+
+function drop() {
+    const droppedMovie = document.getElementsByClassName('dragging')[0];
+    const movieCopy = droppedMovie.cloneNode(true);
+    
+    if (this.classList.contains('movie-hall-add-one')) {
+        movieCopy.classList.remove('dragging');
+        movieCopy.classList.remove('movie-one');
+        movieCopy.classList.add('movie-one-hall-one');
+        this.appendChild(movieCopy);
+    } else if (this.classList.contains('movie-hall-add-two')) {
+        movieCopy.classList.remove('dragging');
+        movieCopy.classList.remove('movie-one');
+        movieCopy.classList.add('movie-one-hall-two');
+        this.appendChild(movieCopy);
+    }
+    
+    droppedMovie.remove();
+    this.classList.remove('hovered');
+}
+

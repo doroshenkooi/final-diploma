@@ -222,6 +222,32 @@
       </div>
     </div>
   </div>
+    <!--Всплыващее окно наименование фильма-->
+  
+    <section class="movie-data-entry">
+      <div class="movie-data-title">
+        <div id="movie-close-pop-up">
+          x
+      </div>
+        <h2>Добавление фильма</h2>
+      </div>
+
+    <form class="movie-pop-up">
+    <label for="movie-n" class="movie-name-label"><span class="movie-pop-up-text">Название:</span></label>
+    <input type="text" id="movie-n" class="movie-name">
+    <label for="movie-d" class="movie-duration-label" ><span class="movie-pop-up-text">Длительность фильма:</span></label>
+    <input type="text" id="movie-d" class="movie-duration">
+    <label for="movie-des" class="movie-description-label"><span class="movie-pop-up-text">Описание фильма:</span></label>
+    <input type="text" id="film-des" class="movie-description">
+    <label for="movie-o" class="movie-origin-label"><span class="movie-pop-up-text">Страна(ы):</span></label>
+    <input type="text" id="film-o" class="movie-origin">
+    <label for="movie-p" class="movie-poster-label">Файл с постером:</label>
+    <input type="file" id="file-p" class="movie-poster">
+      <button type="submit" id="movie-send" class="movie-btn"><span class="movie-btn-text">отправить</span></button>
+    </form>
+     
+    </section>
+    <!--конец наименование фильма-->
       <div class="session-grid-wrapper">
         <div class="add-movie">
           <button class="add-movie-btn"><span class="add-movie-text">добавить фильм</span></button>
