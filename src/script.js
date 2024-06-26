@@ -234,16 +234,7 @@ cancelHallButton.addEventListener('click', cancelHallButtonClick);
     // Цена билетов
     const priceStandartInput = document.querySelector('.price-regular-input-text');
 const priceVipInput = document.querySelector('.price-vip-input-text');
-const addNewMovieBtn =  document.querySelectorAll(".add-movie-btn");
-addNewMovieBtn.addEventListener("click", function() {
-  // Получаем название нового кинозала
 
-    const newMovie = document.createElement("div"); 
-    newMovie.className = "choosing-hall-one"; 
-    newMovie.innerHTML = 
-})
-        
- 
     function priceSaveHallBtnClick() {
       const standartPrice = parseInt(priceStandartInput.value);
       const vipPrice= parseInt(priceVipInput.value);
@@ -260,17 +251,29 @@ addNewMovieBtn.addEventListener("click", function() {
     }
 const priceSaveHallBtn = document.getElementById('price_save');
     priceSaveHallBtn.addEventListener('click', priceSaveHallBtnClick);
-
+// Конец стоимость билетов
       
+//------------Сетка сеансов
 // Получаем элементы списка фильмов
 const movieList = document.querySelector('.movie-list');
 const addMovieBtn = document.querySelector('.add-movie-btn');
 
 // Функция для добавления фильма в список
-function addMovie() {
+
+const movieDataEntrySection = document.querySelector(".movie-data-entry")
+  const addNewMovieBtn =  document.querySelector(".add-movie-btn");
+  addNewMovieBtn.forEach(function(movieBtn) {
+    movieBtn.addEventListener('click', function() {
+    movieDataEntrySection.style.display = 'flex'
+    });
+  });
+      const newMovie = document.createElement("div"); 
+      newMovie.className = "movie-one"; 
+      newMovie.innerHTML = 
+  
   // Создаем элементы для нового фильма
   
-
+function addMovie() {
   // Настройка новых элементов
   deleteIcon.src = 'image/image.png/delete_icon.png';
   deleteIcon.alt = 'иконка удаления';

@@ -1133,7 +1133,7 @@ top: 299px;
 /*=========== Сетка сеансов ==============*/
 /*Всплывающее окно*/
 .movie-data-entry {
-    display: flex;
+    display: none;
 flex-direction: column;
 align-items: center;
 padding: 0px 0px 35px;
