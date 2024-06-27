@@ -1438,6 +1438,7 @@ border: none;
 .movie-hall-add {
     /* conf-step__seances */
 
+/* Auto layout */
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -1446,9 +1447,10 @@ gap: 35px;
 
 position: absolute;
 height: 192px;
-left: 0px;
+left: 104px;
 right: 42px;
-top: 172px;
+top: 272px;
+
 
 }
 

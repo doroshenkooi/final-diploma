@@ -35,7 +35,7 @@ form.addEventListener('submit', (event) => {
   //создание зала
   
   document.addEventListener("DOMContentLoaded", function addHall() {
-    // "создать зал"
+  
     const createHallButton =  document.getElementById("btn-create-hall");
     createHallButton.addEventListener("click", function() {
       // Получаем название нового кинозала
@@ -79,8 +79,6 @@ form.addEventListener('submit', (event) => {
               console.error('Ошибка:', error);
             });
             
-        
-           
             const newHallnew = document.querySelector(".choosing-list-managament");
     newHallnew.appendChild(newHall); 
           // кнопка конфигурация зала
@@ -102,7 +100,6 @@ form.addEventListener('submit', (event) => {
            `<button class="price-one-hall" type="button">
             <span class="hall-button-text">${(newName)}</span></button>`
            
-
         const pricebtnConfig = document.querySelector(".price-list");
         pricebtnConfig.appendChild(newHallpriceBtn);
        
@@ -114,9 +111,8 @@ form.addEventListener('submit', (event) => {
     })
 
   });
-
 });
-   
+  
 //!!!!!!!!!!!!!!!!! конец создания залов
 
 // получаем элементы со страницы
@@ -252,118 +248,56 @@ const priceVipInput = document.querySelector('.price-vip-input-text');
 const priceSaveHallBtn = document.getElementById('price_save');
     priceSaveHallBtn.addEventListener('click', priceSaveHallBtnClick);
 // Конец стоимость билетов
-      
+   
 //------------Сетка сеансов
-// Получаем элементы списка фильмов
-const movieList = document.querySelector('.movie-list');
-const addMovieBtn = document.querySelector('.add-movie-btn');
 
 // Функция для добавления фильма в список
 
-const movieDataEntrySection = document.querySelector(".movie-data-entry")
-  const addNewMovieBtn =  document.querySelector(".add-movie-btn");
-  addNewMovieBtn.forEach(function(movieBtn) {
-    movieBtn.addEventListener('click', function() {
-    movieDataEntrySection.style.display = 'flex'
+const movieDataEntrySection = document.querySelector(".movie-data-entry");
+const addNewMovieBtn =  document.querySelector(".add-movie-btn");
+  
+    addNewMovieBtn.addEventListener('click', function() {
+    movieDataEntrySection.style.display = 'flex';
     });
-  });
+    
+
+    const movieClosePopUp = document.getElementById('movie-close-pop-up');
+    movieClosePopUp.addEventListener('click', function() {
+      movieDataEntrySection.style.display = 'none';
+    });
+    const movieName = document.getElementById('movie-name-text');
+    const movieDuration = document.getElementById('movie-duration-text');
+    const movieDescription = document.getElementById('movie-description-text');
+    const movieOrigin = document.getElementById('movie-origin-text');
+    const moviePoster = document.getElementById('movie-poster-text');
+
+//создание и отправка фильма
+  const movieSend = document.getElementById('movie-send');
+    movieSend.addEventListener('click', function(event) {
+      event.preventDefault();
       const newMovie = document.createElement("div"); 
       newMovie.className = "movie-one"; 
       newMovie.innerHTML = 
-  
-  // Создаем элементы для нового фильма
-  
-function addMovie() {
-  // Настройка новых элементов
-  deleteIcon.src = 'image/image.png/delete_icon.png';
-  deleteIcon.alt = 'иконка удаления';
-  deleteBtn.appendChild(deleteIcon);
-  movieBtnContainer.appendChild(deleteBtn);
-  movieContentText.appendChild(movieTitle);
-  movieContentText.appendChild(movieDuration);
-  newMovie.appendChild(moviePost);
-  newMovie.appendChild(movieContentText);
-  newMovie.appendChild(movieBtnContainer);
-
-  // Добавляем новый фильм в список
-  movieList.appendChild(newMovie);
-}
-
-// Функция для удаления фильма из списка
-function deleteMovie(event) {
-  const movieItem = event.target.closest('.movie-one');
-  if (movieItem) {
-    movieItem.remove();
-  }
-}
-
-// Обработчик клика по кнопке "Добавить фильм"
-addMovieBtn.addEventListener('click', addMovie);
-
-// Обработчик клика по кнопке удаления фильма
-movieList.addEventListener('click', deleteMovie);
-
-// Получение необходимых элементов
-const movieOneElements = Array.from(document.getElementsByClassName('movie-one'));
-const movieHallOne = document.getElementsByClassName('movie-hall-add-one')[0];
-const movieHallTwo = document.getElementsByClassName('movie-hall-add-two')[0];
-
-// Обработчики событий для запуска перетаскивания фильмов
-movieOneElements.forEach((movie) => {
-    movie.addEventListener('dragstart', dragStart);
-    movie.addEventListener('dragend', dragEnd);
-});
-
-// Обработчики событий для залов, в которые можно перетащить фильмы
-movieHallOne.addEventListener('dragover', dragOver);
-movieHallOne.addEventListener('dragenter', dragEnter);
-movieHallOne.addEventListener('dragleave', dragLeave);
-movieHallOne.addEventListener('drop', drop);
-
-movieHallTwo.addEventListener('dragover', dragOver);
-movieHallTwo.addEventListener('dragenter', dragEnter);
-movieHallTwo.addEventListener('dragleave', dragLeave);
-movieHallTwo.addEventListener('drop', drop);
-
-// Функции для обработки событий перетаскивания
-function dragStart() {
-    this.classList.add('dragging');
-}
-
-function dragEnd() {
-    this.classList.remove('dragging');
-}
-
-function dragOver(e) {
-    e.preventDefault();
-}
-
-function dragEnter(e) {
-    e.preventDefault();
-    this.classList.add('hovered');
-}
-
-function dragLeave() {
-    this.classList.remove('hovered');
-}
-
-function drop() {
-    const droppedMovie = document.getElementsByClassName('dragging')[0];
-    const movieCopy = droppedMovie.cloneNode(true);
+      `<div class="movie-one">
+      <img class="movie-post">
+      <div class="movie-conteiner-text">
+       <span class="movie-text-top">Звёздные войны XXIII: Атака клонированных клонов</span>
+       <span class="movie-text-button">130 минут</span>
+      </div>
+       <div class="movie-conteiner-btn">
+         <button class="movie-btn-one">
+           <img class="imggg">
+         </button>
+       </div>
+   </div>`
+   const movieList = document.querySelector(".movie-list");
+   movieList.appendChild(newMovie);
+   movieDataEntrySection.style.display = 'none';
+//значениt для фильма
+const filmName = parseInt(movieName.value);
+const filmDuration = parseInt(movieDuration.value);
+const filmDescription = parseInt(movieDescription.value);
+const filmOrigin = parseInt(movieOrigin.value);
+const filePoster = parseInt(moviePoster.value);
+    })
     
-    if (this.classList.contains('movie-hall-add-one')) {
-        movieCopy.classList.remove('dragging');
-        movieCopy.classList.remove('movie-one');
-        movieCopy.classList.add('movie-one-hall-one');
-        this.appendChild(movieCopy);
-    } else if (this.classList.contains('movie-hall-add-two')) {
-        movieCopy.classList.remove('dragging');
-        movieCopy.classList.remove('movie-one');
-        movieCopy.classList.add('movie-one-hall-two');
-        this.appendChild(movieCopy);
-    }
-    
-    droppedMovie.remove();
-    this.classList.remove('hovered');
-}
-
