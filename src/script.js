@@ -265,39 +265,51 @@ const addNewMovieBtn =  document.querySelector(".add-movie-btn");
     movieClosePopUp.addEventListener('click', function() {
       movieDataEntrySection.style.display = 'none';
     });
-    const movieName = document.getElementById('movie-name-text');
-    const movieDuration = document.getElementById('movie-duration-text');
+    const movieName = document.querySelector('.movie-name');
+    const textName = document.getElementById('movie-n');
+    const textDuration = document.getElementById('movie-d');
+    
+    const movieDuration = document.querySelector('.movie-duration');
     const movieDescription = document.getElementById('movie-description-text');
     const movieOrigin = document.getElementById('movie-origin-text');
     const moviePoster = document.getElementById('movie-poster-text');
 
+const filmDuration = parseInt(movieDuration.value);
 //создание и отправка фильма
   const movieSend = document.getElementById('movie-send');
     movieSend.addEventListener('click', function(event) {
       event.preventDefault();
+      const filmNameTxt = textName.value;
+      const filmDurationTxt = textDuration.value;
+      
       const newMovie = document.createElement("div"); 
       newMovie.className = "movie-one"; 
       newMovie.innerHTML = 
       `<div class="movie-one">
       <img class="movie-post">
       <div class="movie-conteiner-text">
-       <span class="movie-text-top">Звёздные войны XXIII: Атака клонированных клонов</span>
-       <span class="movie-text-button">130 минут</span>
+       <span class="movie-text-top"></span>
+       <span class="movie-text-time"></span>
       </div>
        <div class="movie-conteiner-btn">
          <button class="movie-btn-one">
            <img class="imggg">
          </button>
        </div>
-   </div>`
+   </div>`;
    const movieList = document.querySelector(".movie-list");
    movieList.appendChild(newMovie);
    movieDataEntrySection.style.display = 'none';
 //значениt для фильма
-const filmName = parseInt(movieName.value);
-const filmDuration = parseInt(movieDuration.value);
-const filmDescription = parseInt(movieDescription.value);
+const movieTextTop = document.querySelector('.movie-text-top');
+
+movieTextTop.textContent = filmNameTxt;
+const movieTextTime = document.querySelector('.movie-text-time');
+movieTextTime.textContent = filmDurationTxt;
+
+
+/*const filmDescription = parseInt(movieDescription.value);
 const filmOrigin = parseInt(movieOrigin.value);
-const filePoster = parseInt(moviePoster.value);
+const filePoster = parseInt(moviePoster.value);*/
     })
     
