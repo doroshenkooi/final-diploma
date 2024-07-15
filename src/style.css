@@ -1167,7 +1167,10 @@ height: 3rem;
 background: #63536C;
 }
 
-
+.selected {
+    opacity: 0.6
+    ;
+}
     .movie-pop-up {
 
     display: flex;
@@ -1333,8 +1336,9 @@ height: 52px;
 border: 1px solid rgba(0, 0, 0, 0.3);
 position: relative;
 cursor: move;
+ background: #CAFF85;
 }
-
+/*
 .movie-one {
     background: #CAFF85;
 }
@@ -1353,9 +1357,8 @@ background: #85FFD3;
 
 .movie-five {
 background: #8599FF;
-;
 }
-
+*/
 .movie-post {
 
     width: 38px;
@@ -1502,7 +1505,7 @@ color: #000000;
 
 .movie-hall-time-frame {
     /* conf-step__seances-timeline */
-
+display: flex;
 width: 720px;
 height: 60px;
 border: 1px solid #848484;

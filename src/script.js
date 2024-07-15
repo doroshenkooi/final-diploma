@@ -270,11 +270,11 @@ const addNewMovieBtn =  document.querySelector(".add-movie-btn");
     const textDuration = document.getElementById('movie-d');
     
     const movieDuration = document.querySelector('.movie-duration');
-    const movieDescription = document.getElementById('movie-description-text');
-    const movieOrigin = document.getElementById('movie-origin-text');
-    const moviePoster = document.getElementById('movie-poster-text');
+    const movieDescription = document.getElementById('film-des');
+    const movieOrigin = document.getElementById('film-o');
+    const moviePoster = document.getElementById('film-p');
 
-const filmDuration = parseInt(movieDuration.value);
+
 //создание и отправка фильма
   const movieSend = document.getElementById('movie-send');
     movieSend.addEventListener('click', function(event) {
@@ -285,11 +285,13 @@ const filmDuration = parseInt(movieDuration.value);
       const newMovie = document.createElement("div"); 
       newMovie.className = "movie-one"; 
       newMovie.innerHTML = 
-      `<div class="movie-one">
+  `<div class="movie-one" id="movie-new">
       <img class="movie-post">
-      <div class="movie-conteiner-text">
-       <span class="movie-text-top"></span>
+      <div class="movie-conteiner-text" >
+      
+       <span class="movie-text-top" draggable="true"></span>
        <span class="movie-text-time"></span>
+     
       </div>
        <div class="movie-conteiner-btn">
          <button class="movie-btn-one">
@@ -300,16 +302,92 @@ const filmDuration = parseInt(movieDuration.value);
    const movieList = document.querySelector(".movie-list");
    movieList.appendChild(newMovie);
    movieDataEntrySection.style.display = 'none';
+   
+   
+  
 //значениt для фильма
 const movieTextTop = document.querySelector('.movie-text-top');
 
 movieTextTop.textContent = filmNameTxt;
+
+
 const movieTextTime = document.querySelector('.movie-text-time');
 movieTextTime.textContent = filmDurationTxt;
-
-
-/*const filmDescription = parseInt(movieDescription.value);
-const filmOrigin = parseInt(movieOrigin.value);
-const filePoster = parseInt(moviePoster.value);*/
-    })
     
+//удаление из списка фильмов
+const delMovie = document.querySelector('.movie-btn-one');
+const movieAdd =document.getElementById('movie-new')
+delMovie.addEventListener('click', function(){
+  movieAdd.style.display = 'none';
+//отправка на сервер фильма
+const filmName = parseInt(textName.value);
+  const filmDuration = parseInt(textDuration.value);
+const filmDescription = parseInt(movieDescription.value);
+const filmOrigin = parseInt(movieOrigin.value);
+const filePoster = parseInt(moviePoster.value);
+      const params = new FormData()
+      params.set('filmName', filmName)
+      params.set('filmDuration', filmDuration)
+      params.set('filmDescription', filmDescription)
+      params.set('filmOrigin', filmOrigin)
+      params.set('filePoster', filePoster)
+      
+      fetch('https://shfe-diplom.neto-server.ru/hall/film', {
+        method: 'POST',
+        body: params
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Обработка информации об измененном кинозале
+        console.log(data);
+      })
+      .catch(error => {
+        // Обработка ошибки
+        console.error(error);
+      });
+})
+    })
+
+
+
+  
+
+  
+    
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const movieHallTimeFrames = document.querySelectorAll('.movie-hall-time-frame');
+  const movieList = document.querySelector(".movie-list");
+
+  movieList.addEventListener('dragstart', (e) => {
+    if (e.target && e.target.classList.contains("movie-text-top")) {
+      e.dataTransfer.setData('text/plain', e.target.closest('.movie-one').id);
+    }
+  });
+
+  movieHallTimeFrames.forEach((frame) => {
+    frame.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    frame.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const movieId = e.dataTransfer.getData('text');
+      const originalMovie = document.getElementById(movieId).querySelector('.movie-conteiner-text');
+      if (originalMovie) {
+        const duplicateMovie = originalMovie.cloneNode(true);
+        const newMovieContainer = document.createElement('div');
+        newMovieContainer.classList.add('movie-one');
+        newMovieContainer.id = `movie-${Date.now()}`; // уникальный id для дубликата
+        newMovieContainer.appendChild(duplicateMovie);
+        frame.appendChild(newMovieContainer);
+      }
+    });
+  });
+});
+
