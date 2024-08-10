@@ -1197,6 +1197,7 @@ background: #63536C;
 
     .movie-poster {
         border: none;
+       
     }
 
     .movie-pop-up-text {
@@ -1204,11 +1205,11 @@ background: #63536C;
         line-height: 2rem;
         font-size: 1rem;
         font-family: Arial, Helvetica, sans-serif;
+      
     }
 
     .movie-btn {
         display: flex;
-   
     align-items: flex-start;
     padding: 11.2px 31.3815px 11.9px 31.7285px;
     cursor: pointer;
@@ -1318,11 +1319,7 @@ top: 104px;
 
 }
 
-.movie-one,
-.movie-two,
-.movie-three,
-.movie-four,
-.movie-five {
+.movie-one {
 /* Frame 15 */
 
 box-sizing: border-box;
@@ -1363,7 +1360,7 @@ background: #8599FF;
 
     width: 38px;
     height: 50px;
-    background: url(https://i.postimg.cc/d13N4Rwd/mov-post.png);
+   
     background-size: cover;
 } 
 
